@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Workflow &#8212; R Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'view';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Installing R" href="installRStudio.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">R Workshop</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installR.html">Installing R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installRStudio.html">Installing R</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Workflow</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Workflow</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/view.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Workflow</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario">Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#r-set-up">R Set-up</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">Viewing your data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preparation">Data Cleaning and Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-column-names">Clean Column Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-data">Trimming Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-workflow">
+<h1>Data Workflow<a class="headerlink" href="#data-workflow" title="Link to this heading">#</a></h1>
+<section id="scenario">
+<h2>Scenario<a class="headerlink" href="#scenario" title="Link to this heading">#</a></h2>
+<p>We are a part of a research team conducting a study that aims to understand if there is an association between the average number of hours an individual sleeps each night and the development of hypertension in adults aged 40 years or older. The research team believes that the following factors could obscure such an association, and as such should be adjusted for:</p>
+<ul class="simple">
+<li><p>Average daily alcohol consumption <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p></li>
+<li><p>Regular use of marijuana <code class="docutils literal notranslate"><span class="pre">[regular_marij]</span></code></p></li>
+<li><p>Is participant currently a smoker <code class="docutils literal notranslate"><span class="pre">[smoke_now]</span></code></p></li>
+<li><p>Is participant regularly physically active <code class="docutils literal notranslate"><span class="pre">[phys_active]</span></code></p></li>
+<li><p>BMI Group (underweight, healthy, overweight, obese) <code class="docutils literal notranslate"><span class="pre">[bmi]</span></code></p></li>
+</ul>
+<p>To answer this research question, we will use the US National Health and Nutrition Examination Survey (NHANES) provided within the data file sleep.csv.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The statistical methods for survey data are beyond the scope of this R workshop, as such we will treat this data as if it was collected from randomly selected individuals.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="r-set-up">
+<h1>R Set-up<a class="headerlink" href="#r-set-up" title="Link to this heading">#</a></h1>
+<p>There are a few things you need to do every time you open R:</p>
+<ul class="simple">
+<li><p>Install/Load packages</p></li>
+<li><p>Read in data (import data into R)</p></li>
+</ul>
+<section id="install-load-packages">
+<h2>Install/Load Packages<a class="headerlink" href="#install-load-packages" title="Link to this heading">#</a></h2>
+<p>We <strong>install</strong> packages in R once. We <strong>load</strong> packages we are going to use everytime we open/start R. We recommended that you write the installation/load code at the top of your code script. This makes it easy to see what packages you used at a glance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">#</span></code> is used to indicate a comment in R. This is a line which R will skip over and not try to run as code.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install your packages (first use only)</span>
+<span class="c1"># install.packages(&quot;tidyverse&quot;)</span>
+<span class="c1"># install.packages(&quot;janitor&quot;)</span>
+<span class="c1"># install.packages(&quot;gtsummary&quot;)</span>
+
+<span class="c1"># Load your packages</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gtsummary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ───────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">lubridate</span> 1.9.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr    </span> 1.3.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.4     
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘janitor’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-in-your-data">
+<h2>Load in your Data<a class="headerlink" href="#load-in-your-data" title="Link to this heading">#</a></h2>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will need to know which directory (folder) you’re working in when working with R and point correctly to the file sleep.csv.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in your data and assign this to a data frame called sleep</span>
+<span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;sleep.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">4778</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">26</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Red">chr</span> (14): gender, race1, education, MaritalStatus, hh income, home own, work...
+<span class=" -Color -Color-Green">dbl</span> (12): ID, age, age (months), poverty, weight, height, pulse, bp_dia_ave,...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice the message R prints out. It indicates the delimiter (,), the type of each column, and the row and column count.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>R automatically saves the first row from the .csv file as column names.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-wrangling">
+<h1>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Link to this heading">#</a></h1>
+<section id="viewing-your-data">
+<h2>Viewing your data<a class="headerlink" href="#viewing-your-data" title="Link to this heading">#</a></h2>
+<p>It is generally <strong>good practice</strong> to look at your data to scan for things that might need fixing, for example:</p>
+<ul class="simple">
+<li><p>Text in numerical cells (e.g. “six” vs 6)</p></li>
+<li><p>Odd characters (e.g. &gt;, &lt;, /, etc.)</p></li>
+<li><p>Varied Date formats (e.g 01/16/2024, 16-1-24, Jan 16 2024, etc.)</p></li>
+<li><p>Coded variables (e.g. 99 = Missing)</p></li>
+<li><p>Typos (e.g. ys, yse)</p></li>
+<li><p>Variable capitalization or abbreviations (e.g. Yes, Y, yes)</p></li>
+<li><p>Misaligned variable types</p></li>
+</ul>
+<p>However, it is <strong>bad practice</strong> to look at your data for patterns or to see what research questions you should ask and test.</p>
+<p>There are a couple of different ways you can look at your data:</p>
+<ul class="simple">
+<li><p>Glimpse provides information on each column, it’s name, type and the first few entries:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 4,778
+Columns: 26
+$ ID              &lt;dbl&gt; 54978, 62686, 60371, 59023, 53330, 67222, 61194, 69925…
+$ gender          &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Femal…
+$ age             &lt;dbl&gt; 80.15551, 80.50146, 80.82286, 80.26906, 80.69757, 80.8…
+$ `age (months)`  &lt;dbl&gt; 961.8661, 966.0175, 969.8743, 963.2287, 968.3709, 970.…
+$ race1           &lt;chr&gt; &quot;Black&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, …
+$ education       &lt;chr&gt; &quot;9 - 11th Grade&quot;, &quot;High School&quot;, &quot;Some College&quot;, &quot;9 - …
+$ MaritalStatus   &lt;chr&gt; &quot;Widowed&quot;, &quot;Widowed&quot;, &quot;Separated&quot;, &quot;Married&quot;, &quot;Married…
+$ `hh income`     &lt;chr&gt; &quot;20000-24999&quot;, &quot;35000-44999&quot;, <span class=" -Color -Color-Red">NA</span>, &quot;15000-19999&quot;, &quot;2000…
+$ poverty         &lt;dbl&gt; 1.07, 2.31, <span class=" -Color -Color-Red">NA</span>, 1.21, 1.37, 1.15, 0.42, 1.30, 1.29, 5.…
+$ `home own`      &lt;chr&gt; &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;…
+$ work            &lt;chr&gt; &quot;NotWorking&quot;, &quot;NotWorking&quot;, &quot;NotWorking&quot;, &quot;NotWorking&quot;…
+$ weight          &lt;dbl&gt; 120.5, 100.0, 95.9, 91.8, 113.0, 87.2, 86.5, 80.9, 81.…
+$ height          &lt;dbl&gt; 166.6, 160.7, 157.9, 155.9, 176.8, 156.4, 156.3, 151.3…
+$ pulse           &lt;dbl&gt; 62, 82, 60, 80, 64, 92, 90, 62, 56, 60, 70, 72, 66, 60…
+$ bp_dia_ave      &lt;dbl&gt; 61, 74, 28, 61, 78, 71, 51, 62, 59, 57, 67, 87, 40, 56…
+$ bp_sys_ave      &lt;dbl&gt; 127, 156, 150, 130, 156, 126, 119, 136, 143, 168, 136,…
+$ diabetes        &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No…
+$ n_pregnancies   &lt;dbl&gt; 9, 2, 5, 2, <span class=" -Color -Color-Red">NA</span>, 1, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, 10, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, 3, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, …
+$ sleep_hrs_night &lt;dbl&gt; 7.156727, 6.199555, 9.941897, 7.892662, 5.752325, 8.55…
+$ sleep_trouble   &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,…
+$ phys_active     &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, …
+$ smoke_now       &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,…
+$ alcohol_day     &lt;chr&gt; &quot;3&quot;, &quot;2&quot;, &quot;4&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;,…
+$ regular_marij   &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Ye…
+$ hypertension    &lt;chr&gt; &quot;No Hypertension&quot;, &quot;No Hypertension&quot;, &quot;No Hypertension…
+$ BMI             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 35.30…
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Head (Tail) shows the first (last) <em>n</em> rows:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">tail</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 2 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>54978</td><td>Female</td><td>80.15551</td><td>961.8661</td><td>Black</td><td>9 - 11th Grade</td><td>Widowed</td><td>20000-24999</td><td>1.07</td><td>Own</td><td>⋯</td><td>Yes</td><td>9</td><td>7.156727</td><td>No</td><td>No</td><td>No</td><td>3</td><td>No</td><td>No Hypertension</td><td>43.41</td></tr>
+	<tr><td>62686</td><td>Female</td><td>80.50146</td><td>966.0175</td><td>White</td><td>High School   </td><td>Widowed</td><td>35000-44999</td><td>2.31</td><td>Own</td><td>⋯</td><td>Yes</td><td>2</td><td>6.199555</td><td>No</td><td>No</td><td>No</td><td>2</td><td>No</td><td>No Hypertension</td><td>38.70</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66117</td><td>Female</td><td>16.92910</td><td>203.1492</td><td>White</td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.122093</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.30</td></tr>
+	<tr><td>65627</td><td>Male  </td><td>16.57579</td><td>198.9095</td><td>Black</td><td>NA</td><td>NA</td><td>5000-9999  </td><td>0.30</td><td>Other</td><td>⋯</td><td>No</td><td>NA</td><td>6.410928</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.00</td></tr>
+	<tr><td>57464</td><td>Male  </td><td>16.40998</td><td>196.9198</td><td>Black</td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.77</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>6.311987</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>17.09</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>View which will work in R Studio will open the whole data file in a separate panel. To do this either type <code class="docutils literal notranslate"><span class="pre">View(sleep)</span></code> or click on <code class="docutils literal notranslate"><span class="pre">sleep</span></code> in the environment panel of R Studio.</p></li>
+</ul>
+</section>
+<section id="data-cleaning-and-preparation">
+<h2>Data Cleaning and Preparation<a class="headerlink" href="#data-cleaning-and-preparation" title="Link to this heading">#</a></h2>
+<section id="clean-column-names">
+<h3>Clean Column Names<a class="headerlink" href="#clean-column-names" title="Link to this heading">#</a></h3>
+<p>A good first step is to clean column names, in case there are any odd symbols or mixed cases. The quickest way to do this is with the clean_names function from the <code class="docutils literal notranslate"><span class="pre">janitor</span></code> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix column names reassigning this to the data frame sleep</span>
+<span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="trimming-data">
+<h3>Trimming Data<a class="headerlink" href="#trimming-data" title="Link to this heading">#</a></h3>
+<p>It is often practical to trim your data set down to only the
+necessary columns (variables). We can easily do this using the select function. We will keep only the variables mentioned in the Scenario.</p>
+<p><em>Note: it is best practise to preserve the original data frame so when we trim we assign this to a new data frame.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trim sleep to select columns only and assign this to a new data frame sleep_trim</span>
+<span class="n">sleep_trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">age</span><span class="p">,</span>
+<span class="w">    </span><span class="n">hypertension</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sleep_hrs_night</span><span class="p">,</span>
+<span class="w">    </span><span class="n">phys_active</span><span class="p">,</span>
+<span class="w">    </span><span class="n">smoke_now</span><span class="p">,</span>
+<span class="w">    </span><span class="n">alcohol_day</span><span class="p">,</span>
+<span class="w">    </span><span class="n">regular_marij</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bmi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installRStudio.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installing R</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario">Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#r-set-up">R Set-up</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">Viewing your data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preparation">Data Cleaning and Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-column-names">Clean Column Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-data">Trimming Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Cicely Macnamara & Robin Alexander
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

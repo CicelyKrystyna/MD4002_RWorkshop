@@ -1,0 +1,5 @@
+LIST OF THINGS TO DO TO JUPTYER BOOK
+
+* Get links to external webpages to open in a new tab
+* Get launch button to open in Jupyter so that it can be run there and add this info to landing page note (intro.md)
+* work out why the tbl_summary is not working - is gtsummary loading?!

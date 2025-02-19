@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Workflow &#8212; R Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dataworkflow';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Path Setting" href="pathsetting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">MD4002 R Workshop</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installR.html">Installing R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installRStudio.html">Installing RStudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathsetting.html">Path Setting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Conducting a Data Project</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Workflow</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/dataworkflow.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Workflow</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario">Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#r-set-up">R Set-up</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">Viewing your data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preparation">Data Cleaning and Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-column-names">Clean Column Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-data">Trimming Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-checking">Variable Checking</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-workflow">
+<h1>Data Workflow<a class="headerlink" href="#data-workflow" title="Link to this heading">#</a></h1>
+<p>The main workflow for any data analysis project involves the following:</p>
+<ul class="simple">
+<li><p>R Set-up (loading relevant packages and data)</p></li>
+<li><p>Data Wrangling (cleaning and preparation)</p></li>
+<li><p>Visualisations (tables and graphs)</p></li>
+<li><p>Analysis (modelling or other technical analysis)</p></li>
+<li><p>Assumption checking</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: Advanced statistical analysis is beyond the scope of this workshop.</p>
+</div>
+<section id="scenario">
+<h2>Scenario<a class="headerlink" href="#scenario" title="Link to this heading">#</a></h2>
+<p>We are a part of a research team conducting a study that aims to understand if there is an association between the average number of hours an individual sleeps each night and the development of hypertension in adults aged 40 years or older. The research team believes that the following factors could obscure such an association, and as such should be adjusted for:</p>
+<ul class="simple">
+<li><p>Average daily alcohol consumption <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p></li>
+<li><p>Regular use of marijuana <code class="docutils literal notranslate"><span class="pre">[regular_marij]</span></code></p></li>
+<li><p>Is participant currently a smoker <code class="docutils literal notranslate"><span class="pre">[smoke_now]</span></code></p></li>
+<li><p>Is participant regularly physically active <code class="docutils literal notranslate"><span class="pre">[phys_active]</span></code></p></li>
+<li><p>BMI Group (underweight, healthy, overweight, obese) <code class="docutils literal notranslate"><span class="pre">[bmi]</span></code></p></li>
+</ul>
+<p>To answer this research question, we will use the US National Health and Nutrition Examination Survey (NHANES) provided within the data file <code class="docutils literal notranslate"><span class="pre">sleep.csv.</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: The statistical methods for survey data are beyond the scope of this R workshop.
+As such we will treat this data as if it was collected from randomly selected individuals.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="r-set-up">
+<h1>R Set-up<a class="headerlink" href="#r-set-up" title="Link to this heading">#</a></h1>
+<p>There are a few things you need to do every time you open R:</p>
+<ul class="simple">
+<li><p>Install/Load packages</p></li>
+<li><p>Read in data (import data into R)</p></li>
+</ul>
+<section id="install-load-packages">
+<h2>Install/Load Packages<a class="headerlink" href="#install-load-packages" title="Link to this heading">#</a></h2>
+<p>We <strong>install</strong> packages in R once. We <strong>load</strong> packages we are going to use everytime we open/start R. We recommended that you write the installation/load code at the top of your code script. This makes it easy to see what packages you used at a glance.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tip: # is used to indicate a comment in R.
+This is a line which R will skip over and not try to run as code.
+The best codes are well commented.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install your packages (first use only)</span>
+<span class="c1"># install.packages(&quot;tidyverse&quot;)</span>
+<span class="c1"># install.packages(&quot;janitor&quot;)</span>
+<span class="c1"># install.packages(&quot;gtsummary&quot;)</span>
+
+<span class="c1"># Load your packages (everytime you restart R)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gtsummary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ───────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">lubridate</span> 1.9.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr    </span> 1.3.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.4     
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘janitor’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    chisq.test, fisher.test
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-in-your-data">
+<h2>Load in your Data<a class="headerlink" href="#load-in-your-data" title="Link to this heading">#</a></h2>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tip: you will need to know which directory (folder) you’re working in and point correctly to the file sleep.csv.
+See <a class="reference internal" href="pathsetting.html"><span class="std std-doc">Path Setting</span></a> for additional information.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in your data and assign this to a dataframe called sleep</span>
+<span class="c1"># A dataframe is the object R uses to store data sets</span>
+<span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;sleep.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">4778</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">26</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Red">chr</span> (14): gender, race1, education, MaritalStatus, hh income, home own, work...
+<span class=" -Color -Color-Green">dbl</span> (12): ID, age, age (months), poverty, weight, height, pulse, bp_dia_ave,...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice the message R prints out. It indicates the delimiter (,), the type of each column, and the row and column count.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: R automatically saves the first row from the .csv file as column names.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-wrangling">
+<h1>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Link to this heading">#</a></h1>
+<section id="viewing-your-data">
+<h2>Viewing your data<a class="headerlink" href="#viewing-your-data" title="Link to this heading">#</a></h2>
+<p>It is generally <strong>good practice</strong> to look at your data to scan for things that might need fixing, for example:</p>
+<ul class="simple">
+<li><p>Text in numerical cells (e.g. “six” vs 6)</p></li>
+<li><p>Odd characters (e.g. &gt;, &lt;, /, etc.)</p></li>
+<li><p>Varied Date formats (e.g 01/16/2024, 16-1-24, Jan 16 2024, etc.)</p></li>
+<li><p>Coded variables (e.g. 99 = Missing)</p></li>
+<li><p>Typos (e.g. ys, yse)</p></li>
+<li><p>Variable capitalization or abbreviations (e.g. Yes, Y, yes)</p></li>
+<li><p>Misaligned/counterintuertive variable types</p></li>
+</ul>
+<p>However, it is <strong>bad practice</strong> to look at your data for patterns or to see what research questions you should ask and test.</p>
+<p>There are a couple of different ways you can look at your data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column, it&#39;s name, type and the first few entries:</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 4,778
+Columns: 26
+$ ID              &lt;dbl&gt; 54978, 62686, 60371, 59023, 53330, 67222, 61194, 69925…
+$ gender          &lt;chr&gt; &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Femal…
+$ age             &lt;dbl&gt; 80.15551, 80.50146, 80.82286, 80.26906, 80.69757, 80.8…
+$ `age (months)`  &lt;dbl&gt; 961.8661, 966.0175, 969.8743, 963.2287, 968.3709, 970.…
+$ race1           &lt;chr&gt; &quot;Black&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, …
+$ education       &lt;chr&gt; &quot;9 - 11th Grade&quot;, &quot;High School&quot;, &quot;Some College&quot;, &quot;9 - …
+$ MaritalStatus   &lt;chr&gt; &quot;Widowed&quot;, &quot;Widowed&quot;, &quot;Separated&quot;, &quot;Married&quot;, &quot;Married…
+$ `hh income`     &lt;chr&gt; &quot;20000-24999&quot;, &quot;35000-44999&quot;, <span class=" -Color -Color-Red">NA</span>, &quot;15000-19999&quot;, &quot;2000…
+$ poverty         &lt;dbl&gt; 1.07, 2.31, <span class=" -Color -Color-Red">NA</span>, 1.21, 1.37, 1.15, 0.42, 1.30, 1.29, 5.…
+$ `home own`      &lt;chr&gt; &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;, &quot;Own&quot;…
+$ work            &lt;chr&gt; &quot;NotWorking&quot;, &quot;NotWorking&quot;, &quot;NotWorking&quot;, &quot;NotWorking&quot;…
+$ weight          &lt;dbl&gt; 120.5, 100.0, 95.9, 91.8, 113.0, 87.2, 86.5, 80.9, 81.…
+$ height          &lt;dbl&gt; 166.6, 160.7, 157.9, 155.9, 176.8, 156.4, 156.3, 151.3…
+$ pulse           &lt;dbl&gt; 62, 82, 60, 80, 64, 92, 90, 62, 56, 60, 70, 72, 66, 60…
+$ bp_dia_ave      &lt;dbl&gt; 61, 74, 28, 61, 78, 71, 51, 62, 59, 57, 67, 87, 40, 56…
+$ bp_sys_ave      &lt;dbl&gt; 127, 156, 150, 130, 156, 126, 119, 136, 143, 168, 136,…
+$ diabetes        &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No…
+$ n_pregnancies   &lt;dbl&gt; 9, 2, 5, 2, <span class=" -Color -Color-Red">NA</span>, 1, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, 10, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, 3, <span class=" -Color -Color-Red">NA</span>, <span class=" -Color -Color-Red">NA</span>, …
+$ sleep_hrs_night &lt;dbl&gt; 7.156727, 6.199555, 9.941897, 7.892662, 5.752325, 8.55…
+$ sleep_trouble   &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,…
+$ phys_active     &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, …
+$ smoke_now       &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,…
+$ alcohol_day     &lt;chr&gt; &quot;3&quot;, &quot;2&quot;, &quot;4&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;,…
+$ regular_marij   &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Ye…
+$ hypertension    &lt;chr&gt; &quot;No Hypertension&quot;, &quot;No Hypertension&quot;, &quot;No Hypertension…
+$ BMI             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 35.30…
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># head (tail) shows the first (last) n rows:</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">tail</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 2 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>54978</td><td>Female</td><td>80.15551</td><td>961.8661</td><td>Black</td><td>9 - 11th Grade</td><td>Widowed</td><td>20000-24999</td><td>1.07</td><td>Own</td><td>⋯</td><td>Yes</td><td>9</td><td>7.156727</td><td>No</td><td>No</td><td>No</td><td>3</td><td>No</td><td>No Hypertension</td><td>43.41</td></tr>
+	<tr><td>62686</td><td>Female</td><td>80.50146</td><td>966.0175</td><td>White</td><td>High School   </td><td>Widowed</td><td>35000-44999</td><td>2.31</td><td>Own</td><td>⋯</td><td>Yes</td><td>2</td><td>6.199555</td><td>No</td><td>No</td><td>No</td><td>2</td><td>No</td><td>No Hypertension</td><td>38.70</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66117</td><td>Female</td><td>16.92910</td><td>203.1492</td><td>White</td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.122093</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.30</td></tr>
+	<tr><td>65627</td><td>Male  </td><td>16.57579</td><td>198.9095</td><td>Black</td><td>NA</td><td>NA</td><td>5000-9999  </td><td>0.30</td><td>Other</td><td>⋯</td><td>No</td><td>NA</td><td>6.410928</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.00</td></tr>
+	<tr><td>57464</td><td>Male  </td><td>16.40998</td><td>196.9198</td><td>Black</td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.77</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>6.311987</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>17.09</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View will open the whole data file in a separate panel</span>
+<span class="c1"># This works in RStudio but not here</span>
+<span class="nf">View</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span><span class="w"> </span><span class="c1"># alternatively click on sleep in the environment panel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A spec_tbl_df: 4778 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>54978</td><td>Female</td><td>80.15551</td><td>961.8661</td><td>Black  </td><td>9 - 11th Grade</td><td>Widowed     </td><td>20000-24999</td><td>1.07</td><td>Own </td><td>⋯</td><td>Yes</td><td> 9</td><td>7.156727</td><td>No </td><td>No </td><td>No </td><td>3</td><td>No </td><td>No Hypertension</td><td>43.41</td></tr>
+	<tr><td>62686</td><td>Female</td><td>80.50146</td><td>966.0175</td><td>White  </td><td>High School   </td><td>Widowed     </td><td>35000-44999</td><td>2.31</td><td>Own </td><td>⋯</td><td>Yes</td><td> 2</td><td>6.199555</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>38.70</td></tr>
+	<tr><td>60371</td><td>Female</td><td>80.82286</td><td>969.8743</td><td>White  </td><td>Some College  </td><td>Separated   </td><td>NA         </td><td>  NA</td><td>Own </td><td>⋯</td><td>Yes</td><td> 5</td><td>9.941897</td><td>No </td><td>No </td><td>No </td><td>4</td><td>No </td><td>No Hypertension</td><td>38.46</td></tr>
+	<tr><td>59023</td><td>Female</td><td>80.26906</td><td>963.2287</td><td>White  </td><td>9 - 11th Grade</td><td>Married     </td><td>15000-19999</td><td>1.21</td><td>Own </td><td>⋯</td><td>No </td><td> 2</td><td>7.892662</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>37.77</td></tr>
+	<tr><td>53330</td><td>Male  </td><td>80.69757</td><td>968.3709</td><td>White  </td><td>Some College  </td><td>Married     </td><td>20000-24999</td><td>1.37</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>5.752325</td><td>No </td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>Hypertension   </td><td>36.15</td></tr>
+	<tr><td>67222</td><td>Female</td><td>80.87271</td><td>970.4725</td><td>White  </td><td>8th Grade     </td><td>Married     </td><td>25000-34999</td><td>1.15</td><td>Own </td><td>⋯</td><td>No </td><td> 1</td><td>8.555197</td><td>Yes</td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>No Hypertension</td><td>35.60</td></tr>
+	<tr><td>61194</td><td>Female</td><td>80.19019</td><td>962.2822</td><td>White  </td><td>8th Grade     </td><td>Widowed     </td><td>0-4999     </td><td>0.42</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.077727</td><td>No </td><td>No </td><td>No </td><td>1</td><td>No </td><td>No Hypertension</td><td>35.41</td></tr>
+	<tr><td>69925</td><td>Female</td><td>80.79485</td><td>969.5382</td><td>Mexican</td><td>8th Grade     </td><td>NeverMarried</td><td>10000-14999</td><td>1.30</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>7.474176</td><td>No </td><td>No </td><td>No </td><td>2</td><td>Yes</td><td>No Hypertension</td><td>35.30</td></tr>
+	<tr><td>69167</td><td>Female</td><td>80.42749</td><td>965.1299</td><td>White  </td><td>9 - 11th Grade</td><td>Widowed     </td><td>10000-14999</td><td>1.29</td><td>Own </td><td>⋯</td><td>No </td><td>10</td><td>6.970762</td><td>No </td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>No Hypertension</td><td>35.10</td></tr>
+	<tr><td>66733</td><td>Female</td><td>80.48316</td><td>965.7980</td><td>Black  </td><td>College Grad  </td><td>Married     </td><td>more 99999 </td><td>5.00</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.932179</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>35.00</td></tr>
+	<tr><td>65097</td><td>Male  </td><td>80.44913</td><td>965.3895</td><td>White  </td><td>College Grad  </td><td>Married     </td><td>75000-99999</td><td>5.00</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>8.014354</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>34.80</td></tr>
+	<tr><td>59788</td><td>Male  </td><td>80.48350</td><td>965.8020</td><td>White  </td><td>Some College  </td><td>NeverMarried</td><td>45000-54999</td><td>4.62</td><td>Rent</td><td>⋯</td><td>No </td><td>NA</td><td>6.715139</td><td>No </td><td>Yes</td><td>No </td><td>1</td><td>Yes</td><td>Hypertension   </td><td>34.52</td></tr>
+	<tr><td>61707</td><td>Female</td><td>80.74152</td><td>968.8982</td><td>White  </td><td>9 - 11th Grade</td><td>Widowed     </td><td>25000-34999</td><td>2.31</td><td>Own </td><td>⋯</td><td>No </td><td> 3</td><td>9.672555</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>34.36</td></tr>
+	<tr><td>51819</td><td>Male  </td><td>80.07594</td><td>960.9112</td><td>White  </td><td>9 - 11th Grade</td><td>Married     </td><td>65000-74999</td><td>3.60</td><td>Own </td><td>⋯</td><td>Yes</td><td>NA</td><td>7.315377</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>34.04</td></tr>
+	<tr><td>62174</td><td>Male  </td><td>80.57133</td><td>966.8560</td><td>White  </td><td>College Grad  </td><td>Married     </td><td>65000-74999</td><td>4.30</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.804733</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>33.90</td></tr>
+	<tr><td>55496</td><td>Male  </td><td>80.06024</td><td>960.7229</td><td>White  </td><td>College Grad  </td><td>Married     </td><td>75000-99999</td><td>5.00</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.369331</td><td>Yes</td><td>No </td><td>Yes</td><td>2</td><td>Yes</td><td>No Hypertension</td><td>33.88</td></tr>
+	<tr><td>67347</td><td>Male  </td><td>80.23162</td><td>962.7794</td><td>White  </td><td>8th Grade     </td><td>Married     </td><td>25000-34999</td><td>2.04</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>4.407648</td><td>No </td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>Hypertension   </td><td>33.40</td></tr>
+	<tr><td>56905</td><td>Female</td><td>80.36851</td><td>964.4221</td><td>Black  </td><td>College Grad  </td><td>Widowed     </td><td>10000-14999</td><td>1.29</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.087517</td><td>No </td><td>No </td><td>No </td><td>3</td><td>No </td><td>No Hypertension</td><td>33.29</td></tr>
+	<tr><td>52067</td><td>Female</td><td>80.37399</td><td>964.4878</td><td>White  </td><td>9 - 11th Grade</td><td>Married     </td><td>20000-24999</td><td>1.51</td><td>Own </td><td>⋯</td><td>No </td><td> 3</td><td>6.998895</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>33.11</td></tr>
+	<tr><td>53842</td><td>Female</td><td>80.02973</td><td>960.3567</td><td>White  </td><td>Some College  </td><td>Widowed     </td><td>35000-44999</td><td>3.60</td><td>Own </td><td>⋯</td><td>No </td><td> 2</td><td>8.762179</td><td>No </td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>No Hypertension</td><td>33.02</td></tr>
+	<tr><td>70779</td><td>Male  </td><td>80.37207</td><td>964.4648</td><td>White  </td><td>Some College  </td><td>Married     </td><td>25000-34999</td><td>1.82</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>6.781864</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>32.90</td></tr>
+	<tr><td>57956</td><td>Male  </td><td>80.94329</td><td>971.3195</td><td>White  </td><td>College Grad  </td><td>Married     </td><td>75000-99999</td><td>5.00</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>9.075299</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>32.72</td></tr>
+	<tr><td>65157</td><td>Female</td><td>80.53010</td><td>966.3612</td><td>White  </td><td>Some College  </td><td>Divorced    </td><td>25000-34999</td><td>2.48</td><td>Own </td><td>⋯</td><td>No </td><td> 3</td><td>7.217835</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>Hypertension   </td><td>32.70</td></tr>
+	<tr><td>57775</td><td>Female</td><td>80.17348</td><td>962.0818</td><td>White  </td><td>High School   </td><td>Divorced    </td><td>35000-44999</td><td>3.51</td><td>Own </td><td>⋯</td><td>Yes</td><td> 7</td><td>6.274403</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>32.42</td></tr>
+	<tr><td>62517</td><td>Male  </td><td>80.67090</td><td>968.0508</td><td>White  </td><td>8th Grade     </td><td>Married     </td><td>NA         </td><td>  NA</td><td>Own </td><td>⋯</td><td>Yes</td><td>NA</td><td>8.858710</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>Yes</td><td>No Hypertension</td><td>32.30</td></tr>
+	<tr><td>61650</td><td>Male  </td><td>80.93186</td><td>971.1823</td><td>White  </td><td>High School   </td><td>Married     </td><td>35000-44999</td><td>2.75</td><td>Own </td><td>⋯</td><td>No </td><td>NA</td><td>7.779653</td><td>No </td><td>No </td><td>No </td><td>1</td><td>Yes</td><td>No Hypertension</td><td>32.23</td></tr>
+	<tr><td>54073</td><td>Female</td><td>80.63002</td><td>967.5602</td><td>White  </td><td>High School   </td><td>Married     </td><td>25000-34999</td><td>2.16</td><td>Rent</td><td>⋯</td><td>Yes</td><td> 6</td><td>9.868690</td><td>Yes</td><td>No </td><td>Yes</td><td>1</td><td>No </td><td>No Hypertension</td><td>32.21</td></tr>
+	<tr><td>67566</td><td>Female</td><td>80.15776</td><td>961.8931</td><td>White  </td><td>Some College  </td><td>Widowed     </td><td>15000-19999</td><td>1.26</td><td>Own </td><td>⋯</td><td>Yes</td><td> 4</td><td>6.742190</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No </td><td>No Hypertension</td><td>32.20</td></tr>
+	<tr><td>63514</td><td>Female</td><td>80.01676</td><td>960.2011</td><td>Black  </td><td>High School   </td><td>Widowed     </td><td>15000-19999</td><td>1.20</td><td>Rent</td><td>⋯</td><td>No </td><td> 5</td><td>9.310691</td><td>No </td><td>No </td><td>No </td><td>4</td><td>No </td><td>No Hypertension</td><td>32.20</td></tr>
+	<tr><td>55759</td><td>Female</td><td>80.57939</td><td>966.9527</td><td>Mexican</td><td>8th Grade     </td><td>Widowed     </td><td>0-4999     </td><td>0.09</td><td>Own </td><td>⋯</td><td>Yes</td><td>12</td><td>9.681120</td><td>No </td><td>No </td><td>No </td><td>3</td><td>No </td><td>No Hypertension</td><td>31.83</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>64237</td><td>Female</td><td>16.41893</td><td>197.0272</td><td>White   </td><td>NA</td><td>NA</td><td>15000-19999</td><td>0.50</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.878309</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>21.30</td></tr>
+	<tr><td>54221</td><td>Male  </td><td>16.70443</td><td>200.4531</td><td>Mexican </td><td>NA</td><td>NA</td><td>55000-64999</td><td>2.72</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.556747</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>21.15</td></tr>
+	<tr><td>53435</td><td>Male  </td><td>16.00088</td><td>192.0106</td><td>White   </td><td>NA</td><td>NA</td><td>75000-99999</td><td>3.40</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.866268</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>21.14</td></tr>
+	<tr><td>62890</td><td>Female</td><td>16.14452</td><td>193.7342</td><td>Other   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.788701</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>21.00</td></tr>
+	<tr><td>69968</td><td>Male  </td><td>16.33396</td><td>196.0075</td><td>White   </td><td>NA</td><td>NA</td><td>65000-74999</td><td>2.33</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.174690</td><td>No </td><td>Yes</td><td>No </td><td>3</td><td>No</td><td>No Hypertension</td><td>21.00</td></tr>
+	<tr><td>60941</td><td>Male  </td><td>16.46940</td><td>197.6328</td><td>Hispanic</td><td>NA</td><td>NA</td><td>35000-44999</td><td>1.95</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.762164</td><td>No </td><td>No </td><td>No </td><td>1</td><td>No</td><td>No Hypertension</td><td>20.85</td></tr>
+	<tr><td>68779</td><td>Male  </td><td>16.28414</td><td>195.4097</td><td>Mexican </td><td>NA</td><td>NA</td><td>55000-64999</td><td>4.21</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>8.578923</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>20.80</td></tr>
+	<tr><td>64773</td><td>Female</td><td>16.02357</td><td>192.2828</td><td>Mexican </td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.854439</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>Hypertension   </td><td>20.70</td></tr>
+	<tr><td>64012</td><td>Female</td><td>16.16898</td><td>194.0278</td><td>White   </td><td>NA</td><td>NA</td><td>35000-44999</td><td>1.13</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.517937</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>20.50</td></tr>
+	<tr><td>57252</td><td>Female</td><td>16.81222</td><td>201.7466</td><td>Hispanic</td><td>NA</td><td>NA</td><td>NA         </td><td>  NA</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>8.714390</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>20.35</td></tr>
+	<tr><td>71759</td><td>Male  </td><td>16.70264</td><td>200.4317</td><td>Black   </td><td>NA</td><td>NA</td><td>45000-54999</td><td>2.70</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.572825</td><td>No </td><td>Yes</td><td>No </td><td>3</td><td>No</td><td>No Hypertension</td><td>20.30</td></tr>
+	<tr><td>63446</td><td>Male  </td><td>16.21214</td><td>194.5457</td><td>Black   </td><td>NA</td><td>NA</td><td>25000-34999</td><td>1.16</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>8.567358</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>20.10</td></tr>
+	<tr><td>55820</td><td>Male  </td><td>16.51417</td><td>198.1700</td><td>Black   </td><td>NA</td><td>NA</td><td>20000-24999</td><td>1.09</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.694931</td><td>Yes</td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>19.97</td></tr>
+	<tr><td>70074</td><td>Male  </td><td>16.88880</td><td>202.6656</td><td>Mexican </td><td>NA</td><td>NA</td><td>35000-44999</td><td>1.30</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.074915</td><td>No </td><td>Yes</td><td>No </td><td>3</td><td>No</td><td>No Hypertension</td><td>19.90</td></tr>
+	<tr><td>68286</td><td>Female</td><td>16.93323</td><td>203.1987</td><td>White   </td><td>NA</td><td>NA</td><td>NA         </td><td>  NA</td><td>NA   </td><td>⋯</td><td>No</td><td>NA</td><td>9.325218</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>19.80</td></tr>
+	<tr><td>51771</td><td>Female</td><td>16.95259</td><td>203.4311</td><td>White   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>4.85</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.542143</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>19.41</td></tr>
+	<tr><td>52896</td><td>Female</td><td>16.67698</td><td>200.1237</td><td>Black   </td><td>NA</td><td>NA</td><td>NA         </td><td>  NA</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>8.464762</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>19.26</td></tr>
+	<tr><td>63810</td><td>Male  </td><td>16.44947</td><td>197.3936</td><td>Other   </td><td>NA</td><td>NA</td><td>15000-19999</td><td>0.92</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>8.812366</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>19.00</td></tr>
+	<tr><td>66684</td><td>Male  </td><td>16.94663</td><td>203.3596</td><td>Other   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>4.59</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.366518</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>19.00</td></tr>
+	<tr><td>67552</td><td>Female</td><td>16.32354</td><td>195.8825</td><td>White   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>4.07</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.920172</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>19.00</td></tr>
+	<tr><td>70989</td><td>Male  </td><td>16.89532</td><td>202.7439</td><td>White   </td><td>NA</td><td>NA</td><td>15000-19999</td><td>0.58</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.441692</td><td>No </td><td>No </td><td>No </td><td>3</td><td>No</td><td>No Hypertension</td><td>19.00</td></tr>
+	<tr><td>52491</td><td>Male  </td><td>16.67196</td><td>200.0635</td><td>White   </td><td>NA</td><td>NA</td><td>55000-64999</td><td>2.72</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.514442</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>18.91</td></tr>
+	<tr><td>61341</td><td>Female</td><td>16.93364</td><td>203.2037</td><td>White   </td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.82</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.101230</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.91</td></tr>
+	<tr><td>67934</td><td>Female</td><td>16.51144</td><td>198.1373</td><td>White   </td><td>NA</td><td>NA</td><td>35000-44999</td><td>1.52</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.420585</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.70</td></tr>
+	<tr><td>68014</td><td>Male  </td><td>16.04714</td><td>192.5656</td><td>White   </td><td>NA</td><td>NA</td><td>25000-34999</td><td>1.17</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>8.127231</td><td>No </td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.60</td></tr>
+	<tr><td>59679</td><td>Female</td><td>16.83568</td><td>202.0281</td><td>White   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.106535</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>18.59</td></tr>
+	<tr><td>56670</td><td>Male  </td><td>16.97072</td><td>203.6487</td><td>White   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>7.683118</td><td>No </td><td>Yes</td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>18.53</td></tr>
+	<tr><td>66117</td><td>Female</td><td>16.92910</td><td>203.1492</td><td>White   </td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.122093</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.30</td></tr>
+	<tr><td>65627</td><td>Male  </td><td>16.57579</td><td>198.9095</td><td>Black   </td><td>NA</td><td>NA</td><td>5000-9999  </td><td>0.30</td><td>Other</td><td>⋯</td><td>No</td><td>NA</td><td>6.410928</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.00</td></tr>
+	<tr><td>57464</td><td>Male  </td><td>16.40998</td><td>196.9198</td><td>Black   </td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.77</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>6.311987</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>17.09</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="data-cleaning-and-preparation">
+<h2>Data Cleaning and Preparation<a class="headerlink" href="#data-cleaning-and-preparation" title="Link to this heading">#</a></h2>
+<section id="clean-column-names">
+<h3>Clean Column Names<a class="headerlink" href="#clean-column-names" title="Link to this heading">#</a></h3>
+<p>A good first step is to clean column names, in case there are any odd symbols or mixed cases. The quickest way to do this is with the clean_names function from the <code class="docutils literal notranslate"><span class="pre">janitor</span></code> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix column names reassigning this to the dataframe sleep</span>
+<span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="trimming-data">
+<h3>Trimming Data<a class="headerlink" href="#trimming-data" title="Link to this heading">#</a></h3>
+<p>It is often practical to trim your data set down to only the
+necessary columns (variables). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep only the variables mentioned in the Scenario.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tip: It is best practise to preserve the original data frame so when we trim we assign this to a new data frame.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trim sleep to select columns only and assign this to a new dataframe sleep_trim</span>
+<span class="n">sleep_trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">age</span><span class="p">,</span>
+<span class="w">    </span><span class="n">hypertension</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sleep_hrs_night</span><span class="p">,</span>
+<span class="w">    </span><span class="n">phys_active</span><span class="p">,</span>
+<span class="w">    </span><span class="n">smoke_now</span><span class="p">,</span>
+<span class="w">    </span><span class="n">alcohol_day</span><span class="p">,</span>
+<span class="w">    </span><span class="n">regular_marij</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bmi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also want to trim the data down to our cohort of interest. In this case, we are interested in adults 40
+years or older. We can use the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function to remove participants who are younger than 40 from our data set.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It would be a good idea check a numerical summary of the age variable to make sure there are no extreme or impossible values before we filter</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a summary of the age variable belonging to the sleep_trim dataframe</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">sleep_trim</span><span class="o">$</span><span class="n">age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  16.00   29.91   44.24   45.64   60.05   80.99 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter sleep_trim to select entries we want to keep</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_trim</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">filter</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span><span class="w"> </span><span class="c1">#only those rows with age&gt;=40</span>
+
+<span class="c1"># add a check that the filter worked</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">40.00886844</div></div>
+</div>
+</section>
+</section>
+<section id="variable-checking">
+<h2>Variable Checking<a class="headerlink" href="#variable-checking" title="Link to this heading">#</a></h2>
+<p>We will first consider our exposure variable, in this case, the number of hours a participant sleeps each night <code class="docutils literal notranslate"><span class="pre">[sleep_hrs_night]</span></code>. Let’s check to see if the summary values look reasonable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a summary of sleep_hrs_night variable</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">sleep_hrs_night</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  4.003   6.364   7.288   7.323   8.445   9.998 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Although the values look reasonable, 4 hours is not a lot of sleep. In practice, it might be worth checking with the data provider to make sure that there is not a typo somewhere.</p>
+</div>
+<p>Now let’s fix the <code class="docutils literal notranslate"><span class="pre">alcohol_day</span></code> variable, which we saw earlier was a character variable. A quick easy way to figure out why a numeric variable has been classed as a character variable is to tabulate the variable using the <code class="docutils literal notranslate"><span class="pre">table</span></code> function.
+The variable values (e.g 1) will be listed with their respective counts (e.g. 1007) directly below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a table of values for alcohol_day</span>
+<span class="nf">table</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">alcohol_day</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    1    10    12    13    14    15    16    17    18     2    20    21    24 
+ 1007    21    40     1     1     7     1     2     1   734     3     2     1 
+    3    30     4     5     6     7     8     9   one   One   six  thre three 
+  355     1   212   110   133    24    33     4    13     9     2     1    10 
+Three 
+    6 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pathsetting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Path Setting</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Workflow</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario">Scenario</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#r-set-up">R Set-up</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-your-data">Viewing your data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preparation">Data Cleaning and Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-column-names">Clean Column Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trimming-data">Trimming Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-checking">Variable Checking</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Cicely Macnamara & Robin Alexander
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
