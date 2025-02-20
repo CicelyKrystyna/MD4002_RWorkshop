@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -375,7 +375,7 @@
 <section id="scenario">
 <h2>Scenario<a class="headerlink" href="#scenario" title="Link to this heading">#</a></h2>
 <p>We are a part of a research team conducting a study that aims to understand if there is an association between the average number of hours an individual sleeps each night <code class="docutils literal notranslate"><span class="pre">[sleep_hrs_night]</span></code> and the development of hypertension
-<code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> in adults aged 40 years <code class="docutils literal notranslate"><span class="pre">[age]</span></code> or older. The research team believes that the following factors could obscure such an association, and as such should be adjusted for:</p>
+<code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> in adults aged 40 years or older <code class="docutils literal notranslate"><span class="pre">[age]</span></code>. The research team believes that the following factors could obscure such an association, and as such should be adjusted for:</p>
 <ul class="simple">
 <li><p>Average daily alcohol consumption <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p></li>
 <li><p>Regular use of marijuana <code class="docutils literal notranslate"><span class="pre">[regular_marij]</span></code></p></li>
@@ -395,7 +395,7 @@
 <p>There are a few things you need to do every time you open R:</p>
 <ul class="simple">
 <li><p>Install/Load packages</p></li>
-<li><p>Read in data (import data into R)</p></li>
+<li><p>Read in data (import data) into R</p></li>
 </ul>
 <section id="install-load-packages">
 <h2>Install/Load Packages<a class="headerlink" href="#install-load-packages" title="Link to this heading">#</a></h2>
@@ -420,21 +420,21 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp9p9z2f/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp39VNUq/downloaded_packages
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp9p9z2f/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp39VNUq/downloaded_packages
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependency ‘cards’
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp9p9z2f/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp39VNUq/downloaded_packages
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────────── tidyverse 2.0.0 ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────── tidyverse 2.0.0 ──
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
@@ -442,7 +442,7 @@
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.4     
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────────── tidyverse_conflicts() ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────── tidyverse_conflicts() ──
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
 <span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
@@ -483,7 +483,7 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">4778</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">26</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────────</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────</span>
 <span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
 <span class=" -Color -Color-Red">chr</span> (14): gender, race1, education, MaritalStatus, hh income, home own, work...
 <span class=" -Color -Color-Green">dbl</span> (12): ID, age, age (months), poverty, weight, height, pulse, bp_dia_ave,...
@@ -526,7 +526,7 @@
 <p>There are a couple of different ways you can look at your data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column, it&#39;s name, type and the first few entries:</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column: it&#39;s name, typ/class and the first few entries:</span>
 <span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -635,7 +635,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <section id="trimming-the-data">
 <h3>Trimming the data<a class="headerlink" href="#trimming-the-data" title="Link to this heading">#</a></h3>
 <p>It is often practical to trim your data set down to only the
-necessary columns (variables). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a>. We will also keep the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> too as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
+<strong>necessary variables</strong> (columns). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a>. We will keep the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> too as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>It is best practise to preserve the original dataframe so when we trim we assign this to a new dataframe.</p>
@@ -680,11 +680,10 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </section>
 <section id="filtering-the-data">
 <h3>Filtering the data<a class="headerlink" href="#filtering-the-data" title="Link to this heading">#</a></h3>
-<p>We also want to filter the data down to our cohort of interest. In this case, we are interested in adults 40
-years or older. We can use the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function to remove participants who are younger than 40 from our data set, or rather only keep participants who are onlder than 40.</p>
+<p>We will need to filter the data down to our cohort of interest. In this case, we are interested in adults 40 years or older. We can use the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function to <strong>keep</strong> only those participants who are older than 40.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>It would be a good idea check a numerical summary of the age variable to make sure there are no extreme or impossible values before we filter</p>
+<p>It would be a good idea check a numerical summary of the age variable to make sure there are no extreme or impossible values before we filter.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,12 +719,12 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Print statements are a valuable tool when coding (in R or otherwise). Here we make use of the <code class="docutils literal notranslate"><span class="pre">cat</span></code> function so it is clear what the R output is telling us.</p>
+<p>Print statements are a valuable tool when coding (in R or otherwise). Here we make use of the <code class="docutils literal notranslate"><span class="pre">cat</span></code> function. The output is a readable sentence which provides us with clear information.</p>
 </div>
 </section>
 <section id="variable-checking">
 <h3>Variable checking<a class="headerlink" href="#variable-checking" title="Link to this heading">#</a></h3>
-<p>Variables are classed into types in R, these types include:</p>
+<p>Variables are classed into distinct types in R, these types include:</p>
 <ul class="simple">
 <li><p>numeric: doubles <code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> - decimals, or integers <code class="docutils literal notranslate"><span class="pre">(int)</span></code> - whole numbers</p></li>
 <li><p>characters <code class="docutils literal notranslate"><span class="pre">(chr)</span></code> - text</p></li>
@@ -734,11 +733,11 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Typically in a dataframe you will see variables classed as either numeric <code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> by default or character <code class="docutils literal notranslate"><span class="pre">(chr)</span></code>. We can see the class when we <code class="docutils literal notranslate"><span class="pre">glimpse</span></code> the dataframe or by using the <code class="docutils literal notranslate"><span class="pre">class</span></code> function</p>
+<p>In practise variables in a dataframe will be classed as either numeric (<code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> by default) or character <code class="docutils literal notranslate"><span class="pre">(chr)</span></code>. We can see the class when we <code class="docutils literal notranslate"><span class="pre">glimpse</span></code> the dataframe or by using the <code class="docutils literal notranslate"><span class="pre">class</span></code> function.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># determing the class of variables age, hypertension and alcohol_day</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># determing the class of variables: age, hypertension and alcohol_day</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;age&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">age</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;hypertension&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">hypertension</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;alcohol_day&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">alcohol_day</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
@@ -757,12 +756,12 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 </div>
 </div>
 </div>
-<p>We notice here a problem that while we would expect the ammount someone drinks to be recorded as a numeric value it has actually been recorded as a character. This is something we will need to fix.</p>
+<p>Although the classification of <code class="docutils literal notranslate"><span class="pre">[age]</span></code> and <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> seems appropriate, we notice that <code class="docutils literal notranslate"><span class="pre">[alcolhol_day]</span></code> is classed as a character when we would expect the ammount someone drinks to be recorded as a numeric value. This is something we will need to fix.</p>
 <p>We will go through each of our variables in turn and check for required fixes.</p>
-<p>In addition to each variable having a type/class they also fall into statistical types:</p>
+<p>In addition to each variable having a type/class in R they also fall into statistical types:</p>
 <ul class="simple">
 <li><p>a continuous variable can take on “infinitely” many values.</p></li>
-<li><p>discrete, dichotomous or categorical (usually) variables can take on only a certain set of values.</p></li>
+<li><p>discrete, dichotomous or categorical variables can take on only a certain set of values.</p></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -791,7 +790,7 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 <p class="admonition-title">Tip</p>
 <p>Although the values look reasonable, 4 hours is not a lot of sleep. In practice, it might be worth checking with the data provider to make sure that there is not a typo somewhere.</p>
 </div>
-<p>Next we will check our outcome variable, in this case whether a participant has hypertension or not <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code>. This is a catergorical variable in our data set so we can tabulate the responses.</p>
+<p>Next we will check our outcome variable, in this case whether a participant has hypertension or not, <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code>. This is a catergorical variable in our data set so we can tabulate the responses.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Hypertension could have been recorded as a dichotomous variable since the response could have been yes or no to a question does the participant have hypertension?</p>
@@ -833,7 +832,7 @@ Three
 <p>We can see each response (e.g 1 drink a day) is listed with the respective count (e.g. 1007 have 1 drink a day). We notice that some values were written as text. We need to replace the values written as text and reclassify the variable as numeric.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Since best practice is to maintain the original data we will create a new variable using the <code class="docutils literal notranslate"><span class="pre">mutate</span></code> function.</p>
+<p>Since best practice is to maintain the original data we will create a new variable <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> using the <code class="docutils literal notranslate"><span class="pre">mutate</span></code> function.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -885,6 +884,7 @@ Caused by warning:
 </div>
 </div>
 </div>
+<p>Now we will check that our <code class="docutils literal notranslate"><span class="pre">mutate</span></code> function has fixed the problem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a table of values for alcohol_day_num</span>
@@ -907,11 +907,8 @@ Caused by warning:
 </div>
 </div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>It would be a good idea to check the counts of <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> correctly align with those from <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p>
-</div>
-<p>Now let us check the remaining variables</p>
+<p>We see that <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> is correctly classed as a numeric variable and the counts align with those from <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code>.</p>
+<p>Now let us check the remaining variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># check marijuana indicator variable</span>
@@ -954,11 +951,7 @@ Caused by warning:
 </div>
 </div>
 </div>
-<p>All three of these variables are dichotomous or binary variables with only yes and no responses (with no typos!).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Such data could equally be stored as a logical variable where for example, <code class="docutils literal notranslate"><span class="pre">smoke_now==True</span></code> was equivalent to <code class="docutils literal notranslate"><span class="pre">smoke_now==Yes</span></code>.</p>
-</div>
+<p>All three of these variables are dichotomous (or binary) variables with only yes and no responses. Everything looks good.</p>
 <p>Moving onto the <code class="docutils literal notranslate"><span class="pre">[bmi]</span></code> data. As this data is likely to take continuous rather than discrete values we would use the <code class="docutils literal notranslate"><span class="pre">summary</span></code> function rather than tabulating all values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1039,10 +1032,10 @@ Caused by warning:
 <section id="tables">
 <h2>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h2>
 <p>Let’s create a table for the research project. A table should include all the variables of interest in the study and thus, describes the sample.
-We will use the <code class="docutils literal notranslate"><span class="pre">select</span></code> function to pick the variables to include in the table and the <code class="docutils literal notranslate"><span class="pre">tbl_summary</span></code> function from the <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> package to create the table.</p>
+We will use the <code class="docutils literal notranslate"><span class="pre">select</span></code> function to pick the variables to include in the table and the <code class="docutils literal notranslate"><span class="pre">tbl_summary</span></code> function from the <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> package to create the table. The package <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> creates publication ready tables and visuals.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>It is not uncommon to miss something in the initial data cleaning, so carefully examine all the tables and graphs you make. If you do notice some data cleaning step that you missed, it’s a good idea to add the missed step to the original data cleaningcode, if possible, to keep your code organised.</p>
+<p>It is not uncommon to miss something in the initial data cleaning, so carefully examine all the tables and graphs you make. If you do notice some data cleaning step that you missed, add the missed step to the original data cleaning code, if possible, to keep your code organised.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1080,7 +1073,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">sel
 <section id="graphs">
 <h2>Graphs<a class="headerlink" href="#graphs" title="Link to this heading">#</a></h2>
 <p>We will create a simple graph of the average number of hours a participant slept per night grouped by the participants hypertension status. We will create a box plot, where separate boxes are used for participants with and without hypertension.
-Let’s start with a basic box plot of hours of sleep per night and then build out graph up bit by bit from there.
+Let’s start with a basic box plot of hours of sleep per night and then make it looks better with a few tweaks.
 We will use the <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function and <code class="docutils literal notranslate"><span class="pre">geom_boxplot</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
