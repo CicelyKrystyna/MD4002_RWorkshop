@@ -5,7 +5,7 @@ title: R Workshop
 author: Dr Cicely Macnamara & Robin Alexander
 copyright: "2025"
 logo: logo.png
-exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 # Force re-execution of notebooks on each build.
 execute:
@@ -17,8 +17,8 @@ latex:
     targetname: book.tex
 
 # Add a bibtex file so that we can create citations
-#bibtex_bibfiles:
-#- references.bib
+# bibtex_bibfiles:
+# - references.bib
 
 # Information about where the book exists on the web
 repository:
@@ -33,10 +33,3 @@ html:
 launch_buttons:
   notebook_interface: "jupyterlab"
   colab_url: "https://colab.research.google.com"
-
-# Advanced and power-user settings
-sphinx:
-   config:    
-         html_theme_options:
-          logo:
-            text: "MD4002 R Workshop"
