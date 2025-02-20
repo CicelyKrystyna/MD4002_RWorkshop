@@ -422,22 +422,22 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmpsd72XL/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp78AyHZ/downloaded_packages
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmpsd72XL/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp78AyHZ/downloaded_packages
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependency ‘cards’
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmpsd72XL/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp78AyHZ/downloaded_packages
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmpsd72XL/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//Rtmp78AyHZ/downloaded_packages
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────────── tidyverse 2.0.0 ──
@@ -483,7 +483,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in your data and assign this to a dataframe called sleep</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># an example of path setting</span>
+<span class="c1">#getwd()</span>
+<span class="c1">#setwd(&quot;./sample_data&quot;)</span>
+<span class="c1">#getwd()</span>
+
+<span class="c1"># Read in your data and assign this to a dataframe called sleep</span>
 <span class="c1"># A dataframe is the object R uses to store data sets</span>
 <span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;sleep.csv&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1036,7 +1041,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">sel
 <span class="w">         </span><span class="n">bmi_group</span><span class="p">,</span>
 <span class="w">         </span><span class="n">hypertension</span><span class="p">,</span>
 <span class="w">         </span><span class="n">sleep_hrs_night</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">           </span><span class="nf">display_html</span><span class="p">(</span><span class="nf">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Missing)&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="nf">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Missing)&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="c1"># define clear labels for each variable</span>
 <span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">gender</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="n">age</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span>
@@ -1046,31 +1051,10 @@ We will use the <code class="docutils literal notranslate"><span class="pre">sel
 <span class="w">                </span><span class="n">regular_marij</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Regular Marijuana User&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="n">bmi_group</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;BMI&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="n">hypertension</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">)))</span>
+<span class="w">                </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">))</span>
 
 <span class="c1"># display the table</span>
-<span class="n">table_1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">display_html</span><span class="p">(</span><span class="o">.</span><span class="p">,</span> <span class="n">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span> <span class="o">=</span> <span class="s2">&quot;(Missing)&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gender</span> <span class="o">~</span> <span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">find</span> <span class="n">function</span> <span class="s2">&quot;display_html&quot;</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="o">.</span><span class="n">handleSimpleError</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">cnd</span><span class="p">)</span> 
- <span class="o">.</span> <span class="p">{</span>
- <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">capture_plot_and_output</span><span class="p">()</span>
- <span class="o">.</span>     <span class="n">cnd</span> <span class="o">&lt;-</span> <span class="n">sanitize_call</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">push</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">switch</span><span class="p">(</span><span class="n">on_error</span><span class="p">,</span> <span class="k">continue</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_continue&quot;</span><span class="p">),</span> 
- <span class="o">.</span>         <span class="n">stop</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_stop&quot;</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">)</span>
- <span class="o">.</span> <span class="p">},</span> <span class="s2">&quot;could not find function </span><span class="se">\&quot;</span><span class="s2">display_html</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">quote</span><span class="p">(</span><span class="n">display_html</span><span class="p">(</span><span class="o">.</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span> <span class="o">=</span> <span class="s2">&quot;(Missing)&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gender</span> <span class="o">~</span> 
- <span class="o">.</span>         <span class="s2">&quot;Gender&quot;</span><span class="p">,</span> <span class="n">age</span> <span class="o">~</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">phys_active</span> <span class="o">~</span> <span class="s2">&quot;Regularly Physically Activity&quot;</span><span class="p">,</span> 
- <span class="o">.</span>         <span class="n">smoke_now</span> <span class="o">~</span> <span class="s2">&quot;Current Smoker&quot;</span><span class="p">,</span> <span class="n">alcohol_day_num</span> <span class="o">~</span> <span class="s2">&quot;Alcohol Drinks per Day&quot;</span><span class="p">,</span> 
- <span class="o">.</span>         <span class="n">regular_marij</span> <span class="o">~</span> <span class="s2">&quot;Regular Marijuana User&quot;</span><span class="p">,</span> <span class="n">bmi_group</span> <span class="o">~</span> 
- <span class="o">.</span>             <span class="s2">&quot;BMI&quot;</span><span class="p">,</span> <span class="n">hypertension</span> <span class="o">~</span> <span class="s2">&quot;Hypertension&quot;</span><span class="p">,</span> <span class="n">sleep_hrs_night</span> <span class="o">~</span> 
- <span class="o">.</span>             <span class="s2">&quot;Sleep (hrs/night)&quot;</span><span class="p">)))))</span>
+<span class="c1"># table_1</span>
 </pre></div>
 </div>
 </div>
@@ -1089,6 +1073,9 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 <span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png"><img alt="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" src="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>This is a great start but we could make the graph more aesthetically pleasing. We could:</p>
@@ -1111,6 +1098,9 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 <span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span><span class="w"> </span><span class="c1"># increase the font size</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png"><img alt="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" src="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
