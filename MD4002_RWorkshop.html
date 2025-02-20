@@ -420,18 +420,18 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpUtBKEU/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpMKPwwS/downloaded_packages
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpUtBKEU/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpMKPwwS/downloaded_packages
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>also installing the dependency ‘cards’
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpUtBKEU/downloaded_packages
+	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpMKPwwS/downloaded_packages
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────────── tidyverse 2.0.0 ──
@@ -519,16 +519,6 @@
 <li><p>inconsistent capitalisation or abbreviations (e.g. Yes, Y, yes)</p></li>
 <li><p>misaligned/counterintuertive variable types</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Variables types include:</p>
-<ul class="simple">
-<li><p>numeric: doubles (dbl) - decimals, or integers (int) - whole numbers</p></li>
-<li><p>characters (chr) - text</p></li>
-<li><p>logicals (lgl) - “TRUE” or “FALSE”</p></li>
-<li><p>factors (fct) - categorical data stored as integers (e.g. Strongly Agree = 5)</p></li>
-</ul>
-</div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>It is <strong>bad practice</strong> to look at your data to determine patterns or to determine what research questions you should ask and test.</p>
@@ -735,13 +725,50 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 </section>
 <section id="variable-checking">
 <h3>Variable checking<a class="headerlink" href="#variable-checking" title="Link to this heading">#</a></h3>
+<p>Variables are classed into types in R, these types include:</p>
+<ul class="simple">
+<li><p>numeric: doubles <code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> - decimals, or integers <code class="docutils literal notranslate"><span class="pre">(int)</span></code> - whole numbers</p></li>
+<li><p>characters <code class="docutils literal notranslate"><span class="pre">(chr)</span></code> - text</p></li>
+<li><p>logicals <code class="docutils literal notranslate"><span class="pre">(lgl)</span></code> - “TRUE” or “FALSE”</p></li>
+<li><p>factors <code class="docutils literal notranslate"><span class="pre">(fct)</span></code> - categorical data (stored as integers)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Typically in a dataframe you will see variables classed as either numeric `(dbl)` by default or character `(chr)`. We can see the class when we `glimpse` the dataframe or by using the `class` function
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># determing the class of variables age, hypertension and alcohol_day</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;age&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">age</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;hypertension&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">hypertension</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variable &#39;alcohol_day&#39; is of type:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">alcohol_day</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variable &#39;age&#39; is of type: numeric 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variable &#39;hypertension&#39; is of type: character 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variable &#39;alcohol_day&#39; is of type: character 
+</pre></div>
+</div>
+</div>
+</div>
+<p>We notice here a problem that while we would expect the ammount someone drinks to be recorded as a numeric value it has actually been recorded as a character. This is something we will need to fix.</p>
 <p>We will go through each of our variables in turn and check for required fixes.</p>
+<p>In addition to each variable having a type/class they also fall into statistical types:</p>
+<ul class="simple">
+<li><p>a continuous variable can take on “infinitely” many values.</p></li>
+<li><p>discrete, dichotomous or categorical (usually) variables can take on only a certain set of values.</p></li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>As a rule of thumb:</p>
 <ul class="simple">
 <li><p>if we are checking a continuous variable we can use <code class="docutils literal notranslate"><span class="pre">summary</span></code> which tells you about the distribution of values for that variable.</p></li>
-<li><p>if we are checking a discrete or catergorical variable we can use the <code class="docutils literal notranslate"><span class="pre">table</span></code> function which tabulates counts of each response.</p></li>
+<li><p>if we are checking a discrete, dichotomous or catergorical variables we can use the <code class="docutils literal notranslate"><span class="pre">table</span></code> function which tabulates counts of each response.</p></li>
 </ul>
 </div>
 <p>We will first consider our exposure variable, in this case, the number of hours a participant sleeps each night <code class="docutils literal notranslate"><span class="pre">[sleep_hrs_night]</span></code>. This is a continuous variable so we will check to see if the summary values look reasonable.</p>
@@ -763,7 +790,11 @@ years or older. We can use the <code class="docutils literal notranslate"><span 
 <p class="admonition-title">Tip</p>
 <p>Although the values look reasonable, 4 hours is not a lot of sleep. In practice, it might be worth checking with the data provider to make sure that there is not a typo somewhere.</p>
 </div>
-<p>Next we will check our outcome variable, in this case whether a participant has hypertension or not <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code>. This is a catergorical variable so we can tabulate the responses.</p>
+<p>Next we will check our outcome variable, in this case whether a participant has hypertension or not <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code>. This is a catergorical variable in our data set so we can tabulate the responses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hypertension could have been recorded as a dichotomous variable since the response could have been yes or no to a question does the participant have hypertension?</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a table of values for hypertension</span>
@@ -922,7 +953,7 @@ Caused by warning:
 </div>
 </div>
 </div>
-<p>All three of these variables are binary variables with only yes and no responses (with no typos!).</p>
+<p>All three of these variables are dichotomous or binary variables with only yes and no responses (with no typos!).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Such data could equally be stored as a logical variable where for example, <code class="docutils literal notranslate"><span class="pre">smoke_now==True</span></code> was equivalent to <code class="docutils literal notranslate"><span class="pre">smoke_now==Yes</span></code>.</p>
