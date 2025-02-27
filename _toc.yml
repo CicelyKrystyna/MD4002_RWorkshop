@@ -11,4 +11,5 @@ parts:
     - file: pathsetting.md
   - caption: Conducting a Data Project
     chapters:
+    - file: RBasics.ipynb
     - file: MD4002_RWorkshop.ipynb
