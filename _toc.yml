@@ -4,12 +4,13 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Getting Started
+  - caption: Installing R & RStudio
     chapters:
     - file: installR.md
     - file: installRStudio.md
-    - file: pathsetting.md
-  - caption: Conducting a Data Project
+- caption: Getting Started
     chapters:
     - file: RBasics.ipynb
+  - caption: Conducting a Data Project
+    chapters:
     - file: MD4002_RWorkshop.ipynb
