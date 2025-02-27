@@ -1,7 +1,11 @@
 # R Workshop - Data Analysis
 
-In this workshop we will walk through the data analysis portion of a hypothetical research project. The data analysis will be conducted in R. We encourage you to use R Studio - a Graphical User Interface (GUI). Please follow the instructions under **Getting Started** to download both R and RStudio.
+In this workshop we will walk through the data analysis portion of a hypothetical research project. The workshop is written as a notebook: [Data Workflow](https://cicelykrystyna.github.io/MD4002_RWorkshop/MD4002_RWorkshop.html). 
+
+The data analysis will be conducted in R. We encourage you to use R Studio - a Graphical User Interface (GUI). Please follow the instructions under **Installing R & RStudio** to download both [R](https://cicelykrystyna.github.io/MD4002_RWorkshop/installR.html) and [RStudio](https://cicelykrystyna.github.io/MD4002_RWorkshop/installRStudio.html).
+
+To familiarise yourself with R ahead of the workshop please follow the notebook: [An Introduction to R](https://cicelykrystyna.github.io/MD4002_RWorkshop/RBasics.html) under **Getting Started**.
 
 ```{note}
-However, to ensure that you can follow along, this workshop has been written as a notebook with fully executable code. To access this notebook navigate to [Data Workflow](https://cicelykrystyna.github.io/MD4002_RWorkshop/MD4002_RWorkshop.html), click on the rocket launcher in the top right and select Colab (Google Colab).
+If for some reason you are not using RStudio each notebook has been written with fully executable code. To access an interactive version of each notebook navigate to the notebook, click on the rocket launcher in the top right and select Colab (Google Colab).
 ```
