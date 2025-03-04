@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -426,8 +426,11 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-in-r">Objects in R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-objects">Assigning Objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-environment-panel">The Environment Panel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-objects">Classes of Objects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-objects">Logical Objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logicals-and-binary-data">Logicals and Binary Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factors">Factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data Frames</a></li>
 </ul>
 </li>
 </ul>
@@ -637,7 +640,7 @@
 <h2>Objects in R<a class="headerlink" href="#objects-in-r" title="Link to this heading">#</a></h2>
 <section id="assigning-objects">
 <h3>Assigning Objects<a class="headerlink" href="#assigning-objects" title="Link to this heading">#</a></h3>
-<p>Objects in R are essentially containers. They may contain single peices of data (e.g. a variable) or be more complex structures of data (e.g. lists and data frames). Objects are created by <strong>assigning</strong> the data to that object using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>.</p>
+<p>Objects in R are essentially containers. They may contain single peices of data (e.g. a variable) or be more complex structures of data (e.g. lists and <a class="reference internal" href="###dataframes"><span class="xref myst">data frames</span></a>. Objects are created by <strong>assigning</strong> data to an object using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There are actually no less than five different assignment operators as per this <a class="reference external" href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/assignOps.html">documentation</a>. However, at a basic level using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> will serve you well.</p>
@@ -651,21 +654,21 @@
 <span class="n">my_variable</span><span class="o">&lt;-</span><span class="m">16</span>
 <span class="c1"># assign a set of values {1,2,3} to the object my_set</span>
 <span class="n">my_set</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
-<span class="c1"># assign a list of values {1,2,3} to the object my_list</span>
-<span class="n">my_list</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
-<span class="c1"># assign a list of sets {1,2,3} and {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;} to the object my_listofsets</span>
+<span class="c1"># assign a list of values {1,two,3} to the object my_list</span>
+<span class="n">my_list</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="c1"># assign a list of sets {1,2,3} and {A, B, C, D} to the object my_listofsets</span>
 <span class="n">my_listofsets</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="s">&quot;D&quot;</span><span class="p">))</span>
-<span class="c1"># assign a name to each of the sets for future reference</span>
+<span class="c1"># assign a name to each of the sets in my_listofsets and save as my_listofsets2</span>
 <span class="n">my_listofsets2</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">(</span><span class="n">my_set1</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="n">my_set2</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="s">&quot;D&quot;</span><span class="p">))</span>
-<span class="c1"># assign a table of data to the object my_dataframe</span>
-<span class="n">my_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">my_column1</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">my_column2</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;yes&quot;</span><span class="p">,</span><span class="s">&quot;no&quot;</span><span class="p">,</span><span class="s">&quot;maybe&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>After doing this our environment panel should look like this:</p>
-<p><img alt="environment" src="_images/environment.png" /></p>
-<p>Alternatively, you can get R to list all the currently assigned objects using <code class="docutils literal notranslate"><span class="pre">ls()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We store strings/words using quotation marks - single or double depending on user preference.</p>
+</div>
+<p>You can get R to list all the currently assigned objects using <code class="docutils literal notranslate"><span class="pre">ls()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># list all of the currently assigned objects</span>
@@ -679,23 +682,23 @@
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'my_dataframe'</li><li>'my_list'</li><li>'my_listofsets'</li><li>'my_listofsets2'</li><li>'my_set'</li><li>'my_variable'</li></ol>
+<ol class=list-inline><li>'my_list'</li><li>'my_listofsets'</li><li>'my_listofsets2'</li><li>'my_set'</li><li>'my_variable'</li></ol>
 </div></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We saw above that <code class="docutils literal notranslate"><span class="pre">rm(list</span> <span class="pre">=</span> <span class="pre">ls())</span></code> will remove (and de-assign) all of the objects in the current session. You can remove/deassign individual objects using <code class="docutils literal notranslate"><span class="pre">rm()</span></code>, for example, <code class="docutils literal notranslate"><span class="pre">rm(my_variable)</span></code>.</p>
+<p>We saw above that <code class="docutils literal notranslate"><span class="pre">rm(list</span> <span class="pre">=</span> <span class="pre">ls())</span></code> will remove (and de-assign) all of the objects in the current session. You can also remove/deassign individual objects, for example <code class="docutils literal notranslate"><span class="pre">rm(my_listofsets)</span></code>.</p>
 </div>
-<p>There are various nuances here in the how things have been assigned and stored but two key important things to remember are:</p>
-<ul class="simple">
-<li><p>we store strings/words using quotation marks - single or double depending on preference.</p></li>
-<li><p>a list can contain sets of different length but every column in a dataframe must have the same length.</p></li>
-<li><p>objects have classes and it is important that the correct class has been selected for each object.</p></li>
-</ul>
+</section>
+<section id="the-environment-panel">
+<h3>The Environment Panel<a class="headerlink" href="#the-environment-panel" title="Link to this heading">#</a></h3>
+<p>After assigning these six objects our environment panel should look like this:</p>
+<p><img alt="environment" src="_images/environment.png" /></p>
+<p>The environment panel provides details on objects which have been assigned, the data they contain and their class.</p>
 </section>
 <section id="classes-of-objects">
 <h3>Classes of Objects<a class="headerlink" href="#classes-of-objects" title="Link to this heading">#</a></h3>
-<p>Objects in R are automatically given a “class” (e.g. numeric, character). These indicate how data is stored in R.</p>
+<p>Objects in R are automatically given a <strong>class</strong> (e.g. “numeric”, “character”). These indicate how data is stored in R.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># give the class of my_variable</span>
@@ -709,10 +712,6 @@
 <span class="c1"># give the class of each set in my_listofsets2</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The set my_set1 within object my_listofsets2 is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_listofsets2</span><span class="o">$</span><span class="n">my_set1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The set my_set2 within object my_listofsets2 is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_listofsets2</span><span class="o">$</span><span class="n">my_set2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="c1"># give the class of my_dataframe</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The object my_dataframe is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_dataframe</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The column my_column1 within object my_dataframe is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_dataframe</span><span class="o">$</span><span class="n">my_column1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The column my_column2 within object my_dataframe is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_dataframe</span><span class="o">$</span><span class="n">my_column2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -735,20 +734,11 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The set my_set2 within object my_listofsets2 is of class: character 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The object my_dataframe is of class: data.frame 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The column my_column1 within object my_dataframe is of class: numeric 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The column my_column2 within object my_dataframe is of class: character 
-</pre></div>
-</div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We can also use the function <code class="docutils literal notranslate"><span class="pre">typeof()</span></code>. If an object contains strings its type and class will be character. If an object is of class numeric it may be subcatergorised as either an integer or a double using <code class="docutils literal notranslate"><span class="pre">typeof()</span></code>.</p>
+<p>We can also use the function <code class="docutils literal notranslate"><span class="pre">typeof()</span></code>. If an object contains strings its <strong>type and class</strong> will be “character”. If an object is of <strong>class</strong> “numeric” it may be subcatergorised as either an “integer” or a “double” <strong>type</strong> using <code class="docutils literal notranslate"><span class="pre">typeof()</span></code>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -763,7 +753,11 @@
 </div>
 </div>
 </div>
-<p>R is reasonably good at selected the right type and class for each object but occasionally it might get things wrong.</p>
+<p>R is reasonably good at selecting the correct <strong>type</strong> and <strong>class</strong> for each object. If it is wrong it will typically be becuase of the way the data has been assigned.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A list in R can contain data of different forms (e.g. numbers and words) because each entry in a list can have a different class/type. Other structures are restricted to being of one class/type only.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of values {1,&quot;two&quot;,3} to the object my_mixedset</span>
@@ -779,7 +773,7 @@
 </div>
 </div>
 </div>
-<p>Here, since we included a string in my_mixedset automatically is classes of type “character” and all values are stored as strings. We can check the class using <code class="docutils literal notranslate"><span class="pre">is</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">is.numeric()</span></code> as change the class using <code class="docutils literal notranslate"><span class="pre">as</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">as.numeric</span></code>.</p>
+<p>Here, we included a string in my_mixedset. Automatically R classes my_mixedset as “character” and all values are stored as strings. We can check the class using <code class="docutils literal notranslate"><span class="pre">is</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">is.numeric()</span></code> and change the class using <code class="docutils literal notranslate"><span class="pre">as</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">as.numeric</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ask R if my_mixedset is of class &quot;numeric&quot;</span>
@@ -800,7 +794,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>When we force my_mixedset to be stored as a numeric object any strings are lost (irrevocably) and replaced by a mising data indicator NA. In <a class="reference external" href="https://cicelykrystyna.github.io/MD4002_RWorkshop/MD4002_RWorkshop.html">Data Workflow</a> there is a more detailed example of how we can convert the “two” to a 2.</p>
+<p>When we force my_mixedset to be stored as a numeric object any strings are lost (irrevocably) and replaced by a mising data indicator NA. In <a class="reference external" href="https://cicelykrystyna.github.io/MD4002_RWorkshop/MD4002_RWorkshop.html">Data Workflow</a> there is a more detailed example of how we can convert the “two” to a 2 so as to not lose this data entry.</p>
 </div>
 <p>We can also change the more specific type of an object, for example,</p>
 <div class="cell docutils container">
@@ -819,9 +813,9 @@
 </div>
 </div>
 </section>
-<section id="logical-objects">
-<h3>Logical Objects<a class="headerlink" href="#logical-objects" title="Link to this heading">#</a></h3>
-<p>Sometimes our data may be stored as a set of true/false responses. R stores these as “logicals”. We tell R this by writing TRUE or FALSE or more simply using T or F, for example,</p>
+<section id="logicals-and-binary-data">
+<h3>Logicals and Binary Data<a class="headerlink" href="#logicals-and-binary-data" title="Link to this heading">#</a></h3>
+<p>Sometimes our data may be stored as a set of true/false responses. R stores these as <strong>logicals</strong>. We tell R this by writing TRUE or FALSE or more simply using T or F, for example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of true/false repsonses to the object my_truefalseset</span>
@@ -837,7 +831,7 @@
 </div>
 </div>
 </div>
-<p>Logicals or booleans where there are two distinct answers (binary) can be converted to numeric by flagging one reponse as 1 and the other reponse as 0. If we were to convert my_truefalseset to class “numeric” any Ts become 1s and Fs become 0s.</p>
+<p>Logicals can be converted to numeric by flagging TRUE as 1 and FASLE as 0, i.e. any Ts become 1s and Fs become 0s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ask R to store my_truefalseset as class &quot;numeric&quot; (note reassignment)</span>
@@ -853,7 +847,7 @@
 </div>
 </div>
 </div>
-<p>Suppose we had another set of binary data e.g. a set of happy or sad responses. We can also convert this to either numeric or logical but we would just need to specify which of happy or sad is to be flagged as TRUE/1.</p>
+<p>Indeed any binary data (data restricted to only two possible responses) can be stored numerically or logically. Suppose we had another set of binary data e.g. a set of happy or sad responses. We can convert this to either numeric or logical data. We would just need to specify which of happy or sad is to be flagged as TRUE/1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of happy/sad repsonses to the object my_happysadset</span>
@@ -861,8 +855,8 @@
 <span class="c1"># give the class of my_happysadset</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The object my_happysadset is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_happysadset</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="c1"># print my_happysadset as a logical or numeric</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;happy&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;happy&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset as logical:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;happy&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset as numeric:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;sad&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -870,10 +864,126 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The object my_happysadset is of class: character 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_happysadset: TRUE FALSE FALSE FALSE TRUE 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_happysadset as logical: TRUE FALSE FALSE FALSE TRUE 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_happysadset: 1 0 0 0 1 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_happysadset as numeric: 0 1 1 1 0 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="factors">
+<h3>Factors<a class="headerlink" href="#factors" title="Link to this heading">#</a></h3>
+<p>We can use <strong>factors</strong> to store categorical data numerically. Each catergory is given a numeric value from 1 to n (the number of distinct categories).  R will automatically order the data in to <strong>levels</strong>. This will be done alphabetically unless you specify an alternative. If your data is nominal (no discernable order) you wouldn’t need to worry about the order of <strong>levels</strong> but if your data is ordinal (clear implied order) as in the following example you would.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Factors are useful because saving data numerically is more computationally efficient.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of responses {low, medium, high} to a factor my_factor</span>
+<span class="n">my_factor</span><span class="o">&lt;-</span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">))</span>
+<span class="c1"># print my_factor as it is stored in R</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_factor is stored numerically as:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_factor</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="c1"># assign the same set of responses but tell R how to order the data</span>
+<span class="n">my_factor</span><span class="o">&lt;-</span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">levels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">))</span>
+<span class="c1"># print my_factor as it is stored in R</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_factor is stored numerically as:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_factor</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_factor is stored numerically as: 2 3 1 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>my_factor is stored numerically as: 1 2 3 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-frames">
+<h3>Data Frames<a class="headerlink" href="#data-frames" title="Link to this heading">#</a></h3>
+<p>If you are working with data you are almost certainly going to be using <strong>data frames</strong>. A data frame is essentially a table of observations for different variables of interest. Each column represents a variable and the rows are the observations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Data frames can contain data of different types/class - each column/variable will be designated a class. However, the length of each column must be the same, i.e. there must be an observation provided for each variable or a missing placeholder (NA) must be used.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a table of data consisting of five observations to the object my_dataframe</span>
+<span class="n">ID</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
+<span class="n">mood</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;happy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">)</span>
+<span class="n">score</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;low&quot;</span><span class="p">)</span>
+<span class="n">my_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mood</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">)</span>
+<span class="c1"># display the dataframe</span>
+<span class="n">my_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>mood</th><th scope=col>score</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>happy</td><td>low   </td></tr>
+	<tr><td>2</td><td>happy</td><td>medium</td></tr>
+	<tr><td>3</td><td>sad  </td><td>high  </td></tr>
+	<tr><td>4</td><td>NA   </td><td>high  </td></tr>
+	<tr><td>5</td><td>sad  </td><td>low   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>We could store all of this data numerically. This might look something like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign mood and score responses as numeric</span>
+<span class="n">numeric_mood</span><span class="o">&lt;-</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">mood</span><span class="o">==</span><span class="s">&quot;happy&quot;</span><span class="p">)</span>
+<span class="n">score</span><span class="o">&lt;-</span><span class="nf">factor</span><span class="p">(</span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">))</span>
+<span class="n">numeric_score</span><span class="o">&lt;-</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="c1"># assign the dataframe</span>
+<span class="n">my_numeric_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mood</span><span class="o">=</span><span class="n">numeric_mood</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="o">=</span><span class="n">numeric_score</span><span class="p">)</span>
+<span class="c1"># display the dataframe</span>
+<span class="n">my_numeric_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>mood</th><th scope=col>score</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td> 1</td><td>1</td></tr>
+	<tr><td>2</td><td> 1</td><td>2</td></tr>
+	<tr><td>3</td><td> 0</td><td>3</td></tr>
+	<tr><td>4</td><td>NA</td><td>3</td></tr>
+	<tr><td>5</td><td> 0</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Although there can be value in storing data numerically do this with caution so as not to lose any value to be found in the data in its raw form.</p>
+</div>
+<p>A quick way to see the variables used in your dataframe is to use <code class="docutils literal notranslate"><span class="pre">names()</span></code>, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ask for the column/variable names from my_dataframe</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variables in my_dataframe are:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">my_dataframe</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variables in my_dataframe are: ID mood score 
 </pre></div>
 </div>
 </div>
@@ -965,8 +1075,11 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-in-r">Objects in R</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-objects">Assigning Objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-environment-panel">The Environment Panel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-of-objects">Classes of Objects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-objects">Logical Objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logicals-and-binary-data">Logicals and Binary Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factors">Factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data Frames</a></li>
 </ul>
 </li>
 </ul>
