@@ -17,4 +17,4 @@ parts:
   - caption: Quantative Case Studies
     chapters:
     - file: ANOVA.ipynb
-    - file: Power_Calculation.ipynb
+    - file: Power_Calculations.ipynb
