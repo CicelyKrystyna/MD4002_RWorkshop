@@ -14,7 +14,7 @@ parts:
   - caption: Conducting a Data Project
     chapters:
     - file: MD4002_RWorkshop.ipynb
-  - caption: Quantative Case Studies
+  - caption: Quantitative Case Studies
     chapters:
     - file: ANOVA.ipynb
     - file: Power_Calculations.ipynb
