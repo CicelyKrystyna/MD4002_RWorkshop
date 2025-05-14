@@ -363,9 +363,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-r">
 <h1>An Introduction to R<a class="headerlink" href="#an-introduction-to-r" title="Link to this heading">#</a></h1>
-<p>R is a language and environment for statistical computing and graphics. You can read more about it <a class="reference external" href="https://www.r-project.org/about.html">here</a>.</p>
+<p>R is a language and environment for statistical computing and graphics. You can read more about it <a href="https://www.r-project.org/about.html" target="_blank">here</a>.</p>
 <p>In this Notebook we will point out <strong>some</strong> useful basics of R to help you get started. If you want to learn more then there are a variety of resourses listed in the references section.</p>
-<p>We will be assuming you are following along using RStudio, but you can also interact with the code by clicking the rocket launch button to open this in Google Colab.</p>
+<p>We will be assuming you are following along using RStudio, but you can also interact with the code by clicking the rocket launch button in the top right to open this in Google Colab.</p>
 <p>To get started open RStudio, open a new R Script (e.g. File-&gt;New File-&gt;R Script) and save it (e.g. as <strong>RBasics.R</strong>).</p>
 <section id="getting-to-know-r-rstudio">
 <h2>Getting to know R/RStudio<a class="headerlink" href="#getting-to-know-r-rstudio" title="Link to this heading">#</a></h2>
@@ -506,7 +506,7 @@
 </div>
 <section id="basic-operations">
 <h3>Basic Operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h3>
-<p>Let’s have a play with some very basic functions. Most of these are unremarkable:</p>
+<p>Let’s have a play with some very basic functions. Most of these are unremarkable. Firstly mathematical operations:</p>
 <ul class="simple">
 <li><p>to add numbers use <code class="docutils literal notranslate"><span class="pre">+</span></code></p></li>
 <li><p>to subtract numbers use <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
@@ -514,14 +514,10 @@
 <li><p>to divide numbers use <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
 <li><p>to find powers use <code class="docutils literal notranslate"><span class="pre">^</span></code></p></li>
 <li><p>to calculate the square root use <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></p></li>
-<li><p>to calculate the sum use <code class="docutils literal notranslate"><span class="pre">sum()</span></code></p></li>
-<li><p>to calculate the mean use <code class="docutils literal notranslate"><span class="pre">mean()</span></code></p></li>
-<li><p>to round numbers use <code class="docutils literal notranslate"><span class="pre">round()</span></code></p></li>
 </ul>
-<p>There are many other simple functions such as the exponential function <code class="docutils literal notranslate"><span class="pre">exp()</span></code> and the natural logarithmic function <code class="docutils literal notranslate"><span class="pre">log()</span></code>. If you want to see if R has a function for something you can use the help to search that keyword (e.g. <code class="docutils literal notranslate"><span class="pre">??exponetial</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># a simple mathematical calculation using basic operations</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># a simple mathematical calculation using basic mathematical operations</span>
 <span class="m">1+2</span><span class="o">*</span><span class="m">2+3</span><span class="o">^</span><span class="m">2-4</span><span class="o">/</span><span class="m">2</span><span class="o">-</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">4</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -531,8 +527,27 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>R, like most coding languages, follows the traditional mathematical rules of precedence, i.e. <a class="reference external" href="https://www.bbc.co.uk/bitesize/articles/znm8cmn#:~:text=BIDMAS%20is%20an%20acronym%20used,%2C%20Multiplication%2C%20Addition%2C%20Subtraction.">BIDMAS</a>.</p>
+<p>R, like most coding languages, follows the traditional mathematical rules of precedence, i.e. <a href="https://www.bbc.co.uk/bitesize/articles/znm8cmn#:~:text=BIDMAS%20is%20an%20acronym%20used,%2C%20Multiplication%2C%20Addition%2C%20Subtraction" target="_blank">BIDMAS</a>.</p>
 </div>
+<p>There are many other simple functions such as</p>
+<ul class="simple">
+<li><p>the exponential function <code class="docutils literal notranslate"><span class="pre">exp()</span></code></p></li>
+<li><p>the natural logarithmic function <code class="docutils literal notranslate"><span class="pre">log()</span></code></p></li>
+<li><p>to calculate the sum <code class="docutils literal notranslate"><span class="pre">sum()</span></code></p></li>
+<li><p>to calculate the mean <code class="docutils literal notranslate"><span class="pre">mean()</span></code></p></li>
+<li><p>to round numbers <code class="docutils literal notranslate"><span class="pre">round()</span></code></p></li>
+</ul>
+<p>Some of these functions can take additional arguments such as <code class="docutils literal notranslate"><span class="pre">round()</span></code> which allows you to specify how many decimal places you would like to round to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="kc">pi</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.141593</div></div>
+</div>
+<p><strong>Remember:</strong> If you want to see if R has a function for something you can use the help to search that keyword (e.g. <code class="docutils literal notranslate"><span class="pre">??exponential</span></code>).</p>
 </section>
 <section id="print-statements">
 <h3>Print Statements<a class="headerlink" href="#print-statements" title="Link to this heading">#</a></h3>
@@ -557,10 +572,10 @@
 <h2>Objects in R<a class="headerlink" href="#objects-in-r" title="Link to this heading">#</a></h2>
 <section id="assigning-objects">
 <h3>Assigning Objects<a class="headerlink" href="#assigning-objects" title="Link to this heading">#</a></h3>
-<p>Objects in R are essentially containers. They may contain single peices of data (e.g. a variable) or be more complex structures of data (e.g. lists and <a class="reference internal" href="###dataframes"><span class="xref myst">data frames</span></a>. Objects are created by <strong>assigning</strong> data to an object using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>.</p>
+<p>Objects in R are essentially containers. They may contain single peices of data (e.g. a variable) or be more complex structures of data (e.g. lists and data frames (see below). Objects are created by <strong>assigning</strong> data to an object using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There are actually no less than five different assignment operators as per this <a class="reference external" href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/assignOps.html">documentation</a>. However, at a basic level using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> will serve you well.</p>
+<p>There are actually no less than five different assignment operators as per this <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/assignOps.html" target="_blank">documentation</a>. However, at a basic level using <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> will serve you well.</p>
 </div>
 <p>Lets set up a section in our R script called <strong>Objects in R</strong> and look at some examples.</p>
 <div class="cell docutils container">
@@ -771,8 +786,9 @@
 <span class="n">my_happysadset</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;happy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">)</span>
 <span class="c1"># give the class of my_happysadset</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The object my_happysadset is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_happysadset</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="c1"># print my_happysadset as a logical or numeric</span>
+<span class="c1"># print my_happysadset as a logical flagging happy as TRUE</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset as logical:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.logical</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;happy&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="c1"># print my_happysadset as binary numerical flagging sad as 1</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;my_happysadset as numeric:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">my_happysadset</span><span class="o">==</span><span class="s">&quot;sad&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -822,7 +838,7 @@
 </section>
 <section id="data-frames">
 <h3>Data Frames<a class="headerlink" href="#data-frames" title="Link to this heading">#</a></h3>
-<p>If you are working with data you are almost certainly going to be using <strong>data frames</strong>. A data frame is essentially a table of observations for different variables of interest. Each column represents a variable and the rows are the observations.</p>
+<p>If you are working with data you are almost certainly going to be using <strong>data frames</strong>. A data frame is essentially a table of observations for different variables of interest. Each column represents a variable and the rows are individual observations.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Data frames can contain data of different types/class - each column/variable will be designated a class. However, the length of each column must be the same, i.e. there must be an observation provided for each variable or a missing placeholder (NA) must be used.</p>
@@ -830,11 +846,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a table of data consisting of five observations to the object my_dataframe</span>
+<span class="c1"># each new observation - perhaps a person filling in a survey will be given a unique ID</span>
 <span class="n">ID</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
 <span class="n">mood</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;happy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">)</span>
 <span class="n">score</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;low&quot;</span><span class="p">)</span>
 <span class="n">my_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mood</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">)</span>
-<span class="c1"># display the dataframe</span>
+<span class="c1"># display my_dataframe</span>
 <span class="n">my_dataframe</span>
 </pre></div>
 </div>
@@ -856,7 +873,7 @@
 </table>
 </div></div>
 </div>
-<p>We could store all of this data numerically. This might look something like:</p>
+<p>We could store all of this data numerically. We could convert each variable into a numeric variable, for example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign mood and score responses as numeric</span>
@@ -864,7 +881,83 @@
 <span class="n">score</span><span class="o">&lt;-</span><span class="nf">factor</span><span class="p">(</span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;low&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;medium&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;high&quot;</span><span class="p">))</span>
 <span class="n">numeric_score</span><span class="o">&lt;-</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 <span class="c1"># assign the dataframe</span>
-<span class="n">my_numeric_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mood</span><span class="o">=</span><span class="n">numeric_mood</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="o">=</span><span class="n">numeric_score</span><span class="p">)</span>
+<span class="n">my_numeric_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">numeric_mood</span><span class="p">,</span><span class="w"> </span><span class="n">numeric_score</span><span class="p">)</span>
+<span class="c1"># display my_numeric_dataframe</span>
+<span class="n">my_numeric_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>numeric_mood</th><th scope=col>numeric_score</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td> 1</td><td>1</td></tr>
+	<tr><td>2</td><td> 1</td><td>2</td></tr>
+	<tr><td>3</td><td> 0</td><td>3</td></tr>
+	<tr><td>4</td><td>NA</td><td>3</td></tr>
+	<tr><td>5</td><td> 0</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>or we could make use of the <code class="docutils literal notranslate"><span class="pre">stringasfactor</span></code> option,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the stringasfactor option in my_dataframe</span>
+<span class="n">my_dataframe</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mood</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1"># display my_dataframe</span>
+<span class="n">my_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>mood</th><th scope=col>score</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>happy</td><td>low   </td></tr>
+	<tr><td>2</td><td>happy</td><td>medium</td></tr>
+	<tr><td>3</td><td>sad  </td><td>high  </td></tr>
+	<tr><td>4</td><td>NA   </td><td>high  </td></tr>
+	<tr><td>5</td><td>sad  </td><td>low   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This second option allows us to see the raw data inputs but the computer stores them in a memory efficient way.</p>
+</div>
+<p>A quick way to see the variables (column headers) used in your dataframe is to use <code class="docutils literal notranslate"><span class="pre">names()</span></code>, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ask for the column/variable names from my_numeric_dataframe</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variables in my_dataframe are:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">my_numeric_dataframe</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variables in my_dataframe are: ID numeric_mood numeric_score 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also change the variable names using the <code class="docutils literal notranslate"><span class="pre">names()</span></code> function.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rename numeric_mood to mood and numeric_score to score</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">my_numeric_dataframe</span><span class="p">)[</span><span class="nf">names</span><span class="p">(</span><span class="n">my_numeric_dataframe</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;numeric_mood&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;mood&quot;</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">my_numeric_dataframe</span><span class="p">)[</span><span class="nf">names</span><span class="p">(</span><span class="n">my_numeric_dataframe</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;numeric_score&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;score&quot;</span>
 <span class="c1"># display the dataframe</span>
 <span class="n">my_numeric_dataframe</span>
 </pre></div>
@@ -886,24 +979,6 @@
 </tbody>
 </table>
 </div></div>
-</div>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>Although there can be value in storing data numerically do this with caution so as not to lose any value to be found in the data in its raw form.</p>
-</div>
-<p>A quick way to see the variables used in your dataframe is to use <code class="docutils literal notranslate"><span class="pre">names()</span></code>, for example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># ask for the column/variable names from my_dataframe</span>
-<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The variables in my_dataframe are:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">my_dataframe</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variables in my_dataframe are: ID mood score 
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
