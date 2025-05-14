@@ -4,7 +4,9 @@
 title: R Workshop
 author: Dr Cicely Macnamara & Robin Alexander
 copyright: "2025"
-logo: logo.png
+logo: 
+  image_light: logo_light.png
+  image_dark: logo_dark.png
 exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 # Force re-execution of notebooks on each build.
