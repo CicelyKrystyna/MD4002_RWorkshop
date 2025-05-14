@@ -4,6 +4,9 @@
 format: jb-book
 root: intro
 parts:
+  - caption: Introduction
+    chapters:
+    - file: intro_copy.md
   - caption: Installing R & RStudio
     chapters:
     - file: installR.md
