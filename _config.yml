@@ -5,7 +5,7 @@ title: R Workshop
 author: Dr Cicely Macnamara & Robin Alexander
 copyright: "2025"
 logo: logo_light.png
-exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 # Force re-execution of notebooks on each build.
 execute:
@@ -26,9 +26,9 @@ repository:
   branch: main
 
 # Add GitHub buttons to your book
-html:
-  use_issues_button: true
-  use_repository_button: true
+#html:
+ # use_issues_button: true
+ # use_repository_button: true
 
 launch_buttons:
   notebook_interface: "jupyterlab"
@@ -40,8 +40,3 @@ sphinx:
       logo:
         image_light: logo_light.png
         image_dark: logo_dark.png
-    html_static_path:
-      - "logo-light.png"
-      - "logo-dark.png"
-    html_context:
-       default_mode: light
