@@ -40,5 +40,8 @@ sphinx:
       logo:
         image_light: logo_light.png
         image_dark: logo_dark.png
-  html_context:
-    default_mode: light
+    html_static_path:
+      - "logo-light.png"
+      - "logo-dark.png"
+    html_context:
+       default_mode: light
