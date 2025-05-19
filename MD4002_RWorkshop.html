@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -609,36 +609,11 @@ $ BMI             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># head (tail) shows the first (last) n rows:</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
-<span class="nf">tail</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="c1"># head(sleep, n=2)</span>
+<span class="c1"># tail(sleep, n=3)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 2 × 26</caption>
-<thead>
-	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>54978</td><td>Female</td><td>80.15551</td><td>961.8661</td><td>Black</td><td>9 - 11th Grade</td><td>Widowed</td><td>20000-24999</td><td>1.07</td><td>Own</td><td>⋯</td><td>Yes</td><td>9</td><td>7.156727</td><td>No</td><td>No</td><td>No</td><td>3</td><td>No</td><td>No Hypertension</td><td>43.41</td></tr>
-	<tr><td>62686</td><td>Female</td><td>80.50146</td><td>966.0175</td><td>White</td><td>High School   </td><td>Widowed</td><td>35000-44999</td><td>2.31</td><td>Own</td><td>⋯</td><td>Yes</td><td>2</td><td>6.199555</td><td>No</td><td>No</td><td>No</td><td>2</td><td>No</td><td>No Hypertension</td><td>38.70</td></tr>
-</tbody>
-</table>
-</div><div class="output text_html"><table class="dataframe">
-<caption>A tibble: 3 × 26</caption>
-<thead>
-	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>66117</td><td>Female</td><td>16.92910</td><td>203.1492</td><td>White</td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.122093</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.30</td></tr>
-	<tr><td>65627</td><td>Male  </td><td>16.57579</td><td>198.9095</td><td>Black</td><td>NA</td><td>NA</td><td>5000-9999  </td><td>0.30</td><td>Other</td><td>⋯</td><td>No</td><td>NA</td><td>6.410928</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.00</td></tr>
-	<tr><td>57464</td><td>Male  </td><td>16.40998</td><td>196.9198</td><td>Black</td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.77</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>6.311987</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>17.09</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,8 +889,7 @@ returns new values depending on which condition is met.</p>
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
-<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span><span class="w"> </span><span class="c1"># Reclassing the remaining numbers as numeric</span>
-<span class="n">type</span>
+<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span><span class="w"> </span><span class="c1"># Reclassing the remaining numbers as numeric type</span>
 </pre></div>
 </div>
 </div>
@@ -925,10 +899,6 @@ returns new values depending on which condition is met.</p>
 <span class=" -Color -Color-Cyan">ℹ</span> In argument: `alcohol_day_num = case_when(...)`.
 Caused by warning:
 <span class=" -Color -Color-Yellow">!</span> NAs introduced by coercion”
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">Error</span>: object &#39;type&#39; not found
-<span class="ne">Traceback</span>:
 </pre></div>
 </div>
 </div>
@@ -1167,7 +1137,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png"><img alt="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png" src="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png"><img alt="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" src="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>This is a great start but we could make the graph more aesthetically pleasing. We could:</p>
@@ -1192,7 +1162,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png"><img alt="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png" src="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png"><img alt="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" src="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
@@ -1236,6 +1206,38 @@ within base R (i.e. it is a default function in R and we do not need to load a p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = hypertension_flagged ~ sleep_hrs_night + gender + 
+    age + phys_active + smoke_now + alcohol_day_num + regular_marij + 
+    bmi_group, family = binomial, data = sleep_40)
+
+Coefficients:
+                      Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)           9.639594   0.478165  20.160  &lt; 2e-16 ***
+sleep_hrs_night      -1.155705   0.048539 -23.810  &lt; 2e-16 ***
+genderMale            0.557133   0.103315   5.393 6.95e-08 ***
+age                  -0.037798   0.004429  -8.534  &lt; 2e-16 ***
+phys_activeYes       -0.066194   0.103405  -0.640   0.5221    
+smoke_nowYes         -0.252669   0.103775  -2.435   0.0149 *  
+alcohol_day_num       0.009559   0.021091   0.453   0.6504    
+regular_marijYes      0.039097   0.111424   0.351   0.7257    
+bmi_groupObese        0.233838   0.131469   1.779   0.0753 .  
+bmi_groupOverweight   0.059975   0.133019   0.451   0.6521    
+bmi_groupUnderweight -0.834817   0.610198  -1.368   0.1713    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3625.3  on 2733  degrees of freedom
+Residual deviance: 2460.4  on 2723  degrees of freedom
+AIC: 2482.4
+
+Number of Fisher Scoring iterations: 5
+</pre></div>
+</div>
+</div>
 </div>
 <p>The summary command will print out the model coefficient estimates on the link scale (e.g. log odds) and corresponding
 standard errors, along with other model and fit summaries. While we would never print log odds in a paper, it is still a good
@@ -1251,7 +1253,7 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 <span class="w">                  </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># fix label</span>
 <span class="w">                  </span><span class="n">pvalue_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="nf">style_sigfig</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span><span class="w"> </span><span class="c1"># fix p-value rounding</span>
 <span class="c1"># display the table</span>
-<span class="n">sleep_model_table</span>
+<span class="c1"># sleep_model_table</span>
 </pre></div>
 </div>
 </div>
@@ -1269,8 +1271,8 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 </ul>
 <p>These assumptions change sightly when working with Generalised Linear Models (GLMs), in large part because we are now assuming a different underlying distribution (in our case the binomial distribution). Thus, the assumptions we will check are as follows:</p>
 <ul class="simple">
-<li><p><strong>Linearity</strong>: rather than assuming the probability of the outcome is linearly related to the predictors, the model assumes that the log-odds (logit) of the probability of the outcome is linearly related to the predictors.
-• Independence: observations are independent</p></li>
+<li><p><strong>Linearity</strong>: rather than assuming the probability of the outcome is linearly related to the predictors, the model assumes that the log-odds (logit) of the probability of the outcome is linearly related to the predictors.</p></li>
+<li><p><strong>Independence</strong>: we assume the observations are independent</p></li>
 </ul>
 <p>To assess the linearity, we will plot the predicted values of the outcome against any continuous covariates in the model (only age and hours of sleep in our case). First we need to save the predicted values on the logit scale from the model to our data set.</p>
 <div class="cell docutils container">
@@ -1282,7 +1284,7 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 </div>
 </div>
 </div>
-<p>Next we will create two scatterplots with <code class="docutils literal notranslate"><span class="pre">predictions</span></code> on the y-axis and the covariates (<code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">sleep_hours</span></code>) on the x-axis. If the scatter
+<p>Next we will create two scatterplots with <code class="docutils literal notranslate"><span class="pre">[prediction]</span></code> on the y-axis and the covariates (<code class="docutils literal notranslate"><span class="pre">[age]</span></code>, <code class="docutils literal notranslate"><span class="pre">[sleep_hrs_night]</span></code>) on the x-axis. If the scatter
 shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1290,20 +1292,25 @@ shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
 <span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme_bw</span><span class="p">()</span>
+<span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
 <span class="c1"># Plot logit scale predictions against number of hours of sleep</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
 <span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
 <span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hours of Sleep Per Night&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme_bw</span><span class="p">()</span>
+<span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/0079dc849dd38063040e99382cfcdf55e47dfbae6e5c419feeb6869fa432695a.png"><img alt="_images/0079dc849dd38063040e99382cfcdf55e47dfbae6e5c419feeb6869fa432695a.png" src="_images/0079dc849dd38063040e99382cfcdf55e47dfbae6e5c419feeb6869fa432695a.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png"><img alt="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png" src="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png" style="width: 420px; height: 420px;" /></a>
 </div>
-<p>Both appear more or less linear so the linearity assumption is also satisfied for hours of sleep.</p>
-<p>Finally, on to independence. It is reasonable to assume our observations are independent as there are no repeated
-measurements (i.e. every participant only appears in the data set one time) and there are no other clustering mechanisms
-(e.g. patients within hospitals, students within schools, etc.).</p>
+</div>
+<p>Both appear more or less linear so the linearity assumption is satisfied.</p>
+<p>Finally, on to independence. It is reasonable to assume our observations are independent as there are no repeated measurements (i.e. every participant only appears in the data set once) and there are no other clustering mechanisms
+(e.g. patients within hospitals, students within schools).</p>
 </section>
 </section>
 
