@@ -1,0 +1,54 @@
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# create a numeric alcohol drink count variable called alcohol_day_num
+sleep_40 <- sleep_40 %>%
+mutate(alcohol_day_num = case_when(alcohol_day == "one" ~ 1, # if alcohol_day is one replace with 1
+                                   alcohol_day == "One" ~ 1,
+                                   alcohol_day == "three" ~ 3,
+                                   alcohol_day == "Three" ~ 3,
+                                   alcohol_day == "thre" ~ 3,
+                                   alcohol_day == "Six" ~ 6,
+                                   TRUE ~ as.numeric(alcohol_day))) # Reclassing the remaining numbers as numeric
+type
+------------------
+
+----- stderr -----
+Warning message:
+“[1m[22mThere was 1 warning in `mutate()`.
+[1m[22m[36mℹ[39m In argument: `alcohol_day_num = case_when(...)`.
+Caused by warning:
+[33m![39m NAs introduced by coercion”
+------------------
+
+Error: object 'type' not found
+Traceback:
+
+

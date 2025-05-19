@@ -180,6 +180,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -382,6 +383,11 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs">Graphs</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-checking">Assumption Checking</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -414,16 +420,16 @@
 <p>We are a part of a research team conducting a study that aims to understand if there is an association between the average number of hours an individual sleeps each night <code class="docutils literal notranslate"><span class="pre">[sleep_hrs_night]</span></code> and the development of hypertension
 <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> in adults aged 40 years or older <code class="docutils literal notranslate"><span class="pre">[age]</span></code>. The research team believes that the following factors could obscure such an association, and as such should be adjusted for:</p>
 <ul class="simple">
-<li><p>Average daily alcohol consumption <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p></li>
-<li><p>Regular use of marijuana <code class="docutils literal notranslate"><span class="pre">[regular_marij]</span></code></p></li>
-<li><p>Is participant currently a smoker <code class="docutils literal notranslate"><span class="pre">[smoke_now]</span></code></p></li>
-<li><p>Is participant regularly physically active <code class="docutils literal notranslate"><span class="pre">[phys_active]</span></code></p></li>
+<li><p>average daily alcohol consumption <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code></p></li>
+<li><p>regular use of marijuana <code class="docutils literal notranslate"><span class="pre">[regular_marij]</span></code></p></li>
+<li><p>if the participant is currently a smoker <code class="docutils literal notranslate"><span class="pre">[smoke_now]</span></code></p></li>
+<li><p>if the participant is regularly physically active <code class="docutils literal notranslate"><span class="pre">[phys_active]</span></code></p></li>
 <li><p>BMI Group (underweight, healthy, overweight, obese) <code class="docutils literal notranslate"><span class="pre">[bmi]</span></code></p></li>
 </ul>
 <p>To answer this research question, we will use the US National Health and Nutrition Examination Survey (NHANES) provided within the data file <code class="docutils literal notranslate"><span class="pre">sleep.csv.</span></code></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The statistical methods for survey data are beyond the scope of this R workshop. As such we will treat this data as if it was collected from randomly selected individuals.</p>
+<p>The statistical methods for survey data are beyond the scope of this R workshop so we will ignore the fact that this is survey data. Instead we will treat this data as if it was collected from randomly selected individuals.</p>
 </div>
 </section>
 </section>
@@ -436,7 +442,7 @@
 </ul>
 <section id="install-load-packages">
 <h2>Install/Load Packages<a class="headerlink" href="#install-load-packages" title="Link to this heading">#</a></h2>
-<p>We <strong>install</strong> packages in R once. We <strong>load</strong> packages we are going to use everytime we open/start R. We recommended that you write the installation/load code at the top of your code script. This makes it easy to see what packages you used at a glance.</p>
+<p>We <strong>install</strong> packages in R once using the <code class="docutils literal notranslate"><span class="pre">install.packages</span></code> function. We <strong>load</strong> packages we are going to use everytime we open/start R using the <code class="docutils literal notranslate"><span class="pre">library</span></code> function. We recommended that you write the installation/load code for any package you use during your data workflow at the top of your code scripts. This makes it easy to see what packages you used next time you come to look at the script at a glance.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The symbol # is used to indicate a comment in R. This is a line which R will skip over and not try to run as code. The best codes are well commented.</p>
@@ -445,8 +451,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install your packages (first use only)</span>
 <span class="c1"># install.packages(&quot;tidyverse&quot;)</span>
-<span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;janitor&quot;</span><span class="p">)</span>
-<span class="w"> </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;gtsummary&quot;</span><span class="p">)</span>
+<span class="c1"># install.packages(&quot;janitor&quot;)</span>
+<span class="c1"># install.packages(&quot;gtsummary&quot;)</span>
 
 <span class="c1"># Load your packages (everytime you restart R)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
@@ -456,14 +462,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpmBpdai/downloaded_packages
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	/var/folders/s6/j29zk3c50kj6bvnscxkj0lc40000gr/T//RtmpmBpdai/downloaded_packages
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ─────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
@@ -488,11 +486,17 @@
 </div>
 </div>
 </div>
+<p>Pay attention to the messages that R gives you. Here we see that the tidyverse is actually made up of nine core packages - a
+package of packages. We can also see that both the tidyverse (byway of the dplyr package) and the janitor package mask functions in the stats
+package. This means that when you call those functions (e.g. filter, lag, chisq.test, fisher.test) you will be accessing the version of the function
+from the tidyverse or janitor packages, respectively, and not the version of the function within the stats package.
+If you want to access a masked function you need to tell R where to find it. For example, if we want to access the lag function
+from the stats package we would write <code class="docutils literal notranslate"><span class="pre">stats::lag()</span></code>. The format is always <code class="docutils literal notranslate"><span class="pre">package::function()</span></code>.</p>
 </section>
 <section id="path-setting">
 <h2>Path Setting<a class="headerlink" href="#path-setting" title="Link to this heading">#</a></h2>
-<p>When conducting your data analysis project you will want to keep all of your files organised. We  suggest you set up a directory (folder) to store all of your files (data and outputs) and name it appropriately e.g. DataProject. Download the <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file from GALEN and place it in this directory.</p>
-<p>It may be useful to determine your working directory (or path) for R and then set it to be the directory you have created for your data project. This means when pointing to files e.g. <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> you can keep your path short.</p>
+<p>When conducting your data analysis project you will want to keep all of your files organised. We  suggest you set up a directory (folder) to store all of your files (data and outputs) and name it appropriately, for example create a directory called DataProject. Download the <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file from GALEN or the GitLab repository and place it in this directory.</p>
+<p>It may be useful to determine your working directory (or path) for R and then set it to be the directory you have created. This means when pointing to files e.g. <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> you can keep your path short.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># an example of path setting</span>
@@ -506,7 +510,7 @@
 </section>
 <section id="load-in-your-data">
 <h2>Load in your Data<a class="headerlink" href="#load-in-your-data" title="Link to this heading">#</a></h2>
-<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file).</p>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file) such as our <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file. We can read this into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in your data and assign this to a dataframe called sleep</span>
@@ -534,21 +538,22 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Notice the message R prints out. It indicates the delimiter (,), the type of each column, and the row and column count.</p>
+<p>Notice the message R prints out. It indicates the delimiter, i.e. what separates the entries (in this case a comma), the type of each column, and the row and column count.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>R automatically saves the first row from the .csv file as column names. Ensure only the first row and first row of your data file describe the variables.</p>
+<p>R automatically saves the first row from the .csv file as column names. Ensure only the first row of your data file describe the variables.</p>
 </div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="data-wrangling">
 <h1>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Link to this heading">#</a></h1>
+<p>Now that we’ve loaded in our data we can start the prcoess of getting our data in the correct format for analysis.</p>
 <section id="viewing-your-data">
 <h2>Viewing your data<a class="headerlink" href="#viewing-your-data" title="Link to this heading">#</a></h2>
 <p>It is generally <strong>good practice</strong> to look at your data to scan for things that might need fixing, for example:</p>
 <ul class="simple">
-<li><p>text in numerical cells (e.g. “six” vs 6)</p></li>
+<li><p>text in numerical cells (e.g. “six” instead of 6)</p></li>
 <li><p>odd characters (e.g. &gt;, &lt;, /, etc.)</p></li>
 <li><p>inconsistent Date formats (e.g 01/16/2024, 16-1-24, Jan 16 2024, etc.)</p></li>
 <li><p>coded variables (e.g. 99 = Missing)</p></li>
@@ -563,7 +568,7 @@
 <p>There are a couple of different ways you can look at your data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column: it&#39;s name, typ/class and the first few entries:</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column: it&#39;s name, type/class and the first few entries:</span>
 <span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -604,17 +609,43 @@ $ BMI             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># head (tail) shows the first (last) n rows:</span>
-<span class="c1"># head(sleep, n=2)</span>
-<span class="c1"># tail(sleep, n=3)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">tail</span><span class="p">(</span><span class="n">sleep</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 2 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>54978</td><td>Female</td><td>80.15551</td><td>961.8661</td><td>Black</td><td>9 - 11th Grade</td><td>Widowed</td><td>20000-24999</td><td>1.07</td><td>Own</td><td>⋯</td><td>Yes</td><td>9</td><td>7.156727</td><td>No</td><td>No</td><td>No</td><td>3</td><td>No</td><td>No Hypertension</td><td>43.41</td></tr>
+	<tr><td>62686</td><td>Female</td><td>80.50146</td><td>966.0175</td><td>White</td><td>High School   </td><td>Widowed</td><td>35000-44999</td><td>2.31</td><td>Own</td><td>⋯</td><td>Yes</td><td>2</td><td>6.199555</td><td>No</td><td>No</td><td>No</td><td>2</td><td>No</td><td>No Hypertension</td><td>38.70</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 26</caption>
+<thead>
+	<tr><th scope=col>ID</th><th scope=col>gender</th><th scope=col>age</th><th scope=col>age (months)</th><th scope=col>race1</th><th scope=col>education</th><th scope=col>MaritalStatus</th><th scope=col>hh income</th><th scope=col>poverty</th><th scope=col>home own</th><th scope=col>⋯</th><th scope=col>diabetes</th><th scope=col>n_pregnancies</th><th scope=col>sleep_hrs_night</th><th scope=col>sleep_trouble</th><th scope=col>phys_active</th><th scope=col>smoke_now</th><th scope=col>alcohol_day</th><th scope=col>regular_marij</th><th scope=col>hypertension</th><th scope=col>BMI</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66117</td><td>Female</td><td>16.92910</td><td>203.1492</td><td>White</td><td>NA</td><td>NA</td><td>more 99999 </td><td>5.00</td><td>Own  </td><td>⋯</td><td>No</td><td>NA</td><td>6.122093</td><td>Yes</td><td>Yes</td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.30</td></tr>
+	<tr><td>65627</td><td>Male  </td><td>16.57579</td><td>198.9095</td><td>Black</td><td>NA</td><td>NA</td><td>5000-9999  </td><td>0.30</td><td>Other</td><td>⋯</td><td>No</td><td>NA</td><td>6.410928</td><td>No </td><td>No </td><td>No </td><td>2</td><td>No</td><td>No Hypertension</td><td>18.00</td></tr>
+	<tr><td>57464</td><td>Male  </td><td>16.40998</td><td>196.9198</td><td>Black</td><td>NA</td><td>NA</td><td>10000-14999</td><td>0.77</td><td>Rent </td><td>⋯</td><td>No</td><td>NA</td><td>6.311987</td><td>No </td><td>No </td><td>Yes</td><td>1</td><td>No</td><td>No Hypertension</td><td>17.09</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View will open the whole dataframe</span>
-<span class="c1"># We will comment this out here to save space</span>
-<span class="c1"># View(sleep) # alternatively in RStudio click on sleep in the environment panel</span>
+<span class="c1"># I have commented this out here to save space</span>
+<span class="c1"># View(sleep)</span>
+<span class="c1"># alternatively in RStudio click on sleep in the environment panel</span>
 </pre></div>
 </div>
 </div>
@@ -672,7 +703,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <section id="trimming-the-data">
 <h3>Trimming the data<a class="headerlink" href="#trimming-the-data" title="Link to this heading">#</a></h3>
 <p>It is often practical to trim your data set down to only the
-<strong>necessary variables</strong> (columns). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a>. We will keep the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> too as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
+<strong>necessary variables</strong> (columns). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a> and we will keep the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> too as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>It is best practise to preserve the original dataframe so when we trim we assign this to a new dataframe.</p>
@@ -736,7 +767,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </div>
 </div>
 </div>
-<p>This looks reasonbale and so we can proceed to filter.</p>
+<p>This looks reasonable and so we can proceed to filter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter sleep_trim to select entries we want to keep assigned to a new dataframe</span>
@@ -770,7 +801,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In practise variables in a dataframe will be classed as either numeric (<code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> by default) or character <code class="docutils literal notranslate"><span class="pre">(chr)</span></code>. We can see the class when we <code class="docutils literal notranslate"><span class="pre">glimpse</span></code> the dataframe or by using the <code class="docutils literal notranslate"><span class="pre">class</span></code> function.</p>
+<p>In practise variables (columns) in a dataframe will be classed as either numeric (<code class="docutils literal notranslate"><span class="pre">(dbl)</span></code> by default) or character <code class="docutils literal notranslate"><span class="pre">(chr)</span></code>. We can see the class when we <code class="docutils literal notranslate"><span class="pre">glimpse</span></code> the dataframe or by using the <code class="docutils literal notranslate"><span class="pre">class</span></code> function.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,11 +897,13 @@ Three
 </div>
 </div>
 </div>
-<p>We can see each response (e.g 1 drink a day) is listed with the respective count (e.g. 1007 have 1 drink a day). We notice that some values were written as text. We need to replace the values written as text and reclassify the variable as numeric.</p>
+<p>We can see each response (e.g 1 drink a day) is listed with the respective count (e.g. 1007 participants have 1 drink a day). We notice that some values were written as text. We need to replace the values written as text and reclassify the variable as numeric.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Since best practice is to maintain the original data we will create a new variable <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> using the <code class="docutils literal notranslate"><span class="pre">mutate</span></code> function.</p>
 </div>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">case_when</span></code> function to change our text entries into numeric entries. This function is similar to if/else functions in that it takes a value and compares it to a set of conditions and then
+returns new values depending on which condition is met.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a numeric alcohol drink count variable called alcohol_day_num</span>
@@ -881,7 +914,8 @@ Three
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
 <span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
-<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span>
+<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span><span class="w"> </span><span class="c1"># Reclassing the remaining numbers as numeric</span>
+<span class="n">type</span>
 </pre></div>
 </div>
 </div>
@@ -893,12 +927,21 @@ Caused by warning:
 <span class=" -Color -Color-Yellow">!</span> NAs introduced by coercion”
 </pre></div>
 </div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">Error</span>: object &#39;type&#39; not found
+<span class="ne">Traceback</span>:
+</pre></div>
+</div>
 </div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>R warns us that since we classified <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> as a numeric variable any remaining text values will be replaced with missing values (NA) so we should check to see if we missed anything by tabulating this new variable.</p>
 </div>
+<p>In order to retain the existing numeric values of <code class="docutils literal notranslate"><span class="pre">alcohol_day</span></code>, we need to specify that all other cases not previously included in our <code class="docutils literal notranslate"><span class="pre">case_when</span></code> should be
+copied over as numbers using the <code class="docutils literal notranslate"><span class="pre">as.numeric</span></code> function.
+It is important to note that even though the values of <code class="docutils literal notranslate"><span class="pre">alcohol_day</span></code> may look like numbers (e.g. 1, 2, 3, etc.), they are actually
+stored as a character (text/strings) in that column. This is because the columns of a dataframe can only be of one class and type. This means
+that if there is text in even just one row of a column, R will save that whole column as a character.</p>
 <p>A slightly tidier version of this code makes use of the <code class="docutils literal notranslate"><span class="pre">%in%</span></code> and <code class="docutils literal notranslate"><span class="pre">c()</span></code> functions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -944,7 +987,7 @@ Caused by warning:
 </div>
 </div>
 </div>
-<p>We see that <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> is correctly classed as a numeric variable and the counts align with those from <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code>.</p>
+<p>We see that <code class="docutils literal notranslate"><span class="pre">[alcohol_day_num]</span></code> is correctly classed as a numeric variable and the counts align with those from <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code>. Again there are some high values that we might want to double check but otherwise this variable looks good.</p>
 <p>Now let us check the remaining variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1004,7 +1047,8 @@ Caused by warning:
 </div>
 </div>
 </div>
-<p>This seems reasonable, but the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a> listed BMI groups (e.g. underweight, healthy, overweight, obese) rather than the BMI. Let us create a new bmi variable to aggregate participants into their BMI group.</p>
+<p>This seems reasonable, but the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a> listed BMI groups (e.g. underweight, healthy, overweight, obese) rather than the BMI. Let us create a new bmi variable to aggregate participants into their BMI group. Again we will make use of the <code class="docutils literal notranslate"><span class="pre">mutate</span></code> and <code class="docutils literal notranslate"><span class="pre">case_when</span></code> functions. Notice the use of the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> command to combine two conditions to identify participants whose BMI is
+between two values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a discrete BMI variable called bmi_group</span>
@@ -1038,7 +1082,7 @@ Caused by warning:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="nf">group_by</span><span class="p">(</span><span class="n">bmi_group</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">summarise</span><span class="p">(</span><span class="n">min_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">bmi</span><span class="p">),</span>
+<span class="nf">summarise</span><span class="p">(</span><span class="n">min_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">bmi</span><span class="p">),</span><span class="w"> </span><span class="c1"># calculate the minimum and maximum bmi in each group</span>
 <span class="w">          </span><span class="n">max_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">bmi</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">            </span><span class="nf">arrange</span><span class="p">(</span><span class="n">min_bmi</span><span class="p">)</span><span class="w"> </span><span class="c1"># arrange in ascending min_bmi order (default alphabetical)</span>
 </pre></div>
@@ -1060,6 +1104,7 @@ Caused by warning:
 </table>
 </div></div>
 </div>
+<p>We have checked all the variables and fixed any issues.</p>
 </section>
 </section>
 </section>
@@ -1122,7 +1167,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png"><img alt="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" src="_images/f066e278984d2c09c197d76062b15a860eae70477208c10dc89de45a3f640803.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png"><img alt="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png" src="_images/d914df7fc35670f5d71992ca46dc5b6eebb1a747f93ff12fd593b33e260f32ff.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>This is a great start but we could make the graph more aesthetically pleasing. We could:</p>
@@ -1147,9 +1192,118 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png"><img alt="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" src="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png"><img alt="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png" src="_images/5f7486f3c5cc1da8faeda62688780537bbc87a5163f1613f8996cb33cbe54010.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analysis">
+<h1>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h1>
+<p>Finally we are ready to carry out some analysis of our data.</p>
+<section id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Link to this heading">#</a></h2>
+<p>Since our outcome (hypertension) is binary, we will use a logistic regression model which assumes a binomial distribution. We can do this by using the <code class="docutils literal notranslate"><span class="pre">glm</span></code> function
+within base R (i.e. it is a default function in R and we do not need to load a package for it.)</p>
+<p>The main syntax we will need for our <code class="docutils literal notranslate"><span class="pre">glm</span></code> is <code class="docutils literal notranslate"><span class="pre">glm(formula,</span> <span class="pre">data,</span> <span class="pre">family)</span></code> where <code class="docutils literal notranslate"><span class="pre">family</span></code> will be the binomial distribution, <code class="docutils literal notranslate"><span class="pre">data</span></code> is our data frame and the <code class="docutils literal notranslate"><span class="pre">formula</span></code> is given by:</p>
+<p><code class="docutils literal notranslate"><span class="pre">outcome</span> <span class="pre">~</span> <span class="pre">exposure</span> <span class="pre">+</span> <span class="pre">predictor_1</span> <span class="pre">+</span> <span class="pre">...</span> <span class="pre">+</span> <span class="pre">predictor_n</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">glm</span></code> function requires the outcome variable to be 0 or 1. So we will apply the <code class="docutils literal notranslate"><span class="pre">mutate</span></code> and <code class="docutils literal notranslate"><span class="pre">case_when</span></code> functions to change the way we store <code class="docutils literal notranslate"><span class="pre">hypertension</span></code>. Technically speaking all catergorical/dichotomous variables should be stored as factors too.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">   </span><span class="nf">mutate</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                   </span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;No Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to code up the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phys_active</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">smoke_now</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">regular_marij</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_group</span><span class="p">,</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_40</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running the above code may seem somewhat anticlimactic, since there was no output. Let us quickly check out the model using the summary function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">sleep_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The summary command will print out the model coefficient estimates on the link scale (e.g. log odds) and corresponding
+standard errors, along with other model and fit summaries. While we would never print log odds in a paper, it is still a good
+idea to skim the results and make sure there are no suspiciously large log odds estimates or standard errors. Everything looks good in the summary so let us go ahead and make a formal regression summary table with the odd ratios and
+corresponding inference metrics - confidence intervals (CI) and p-values.</p>
+<p>We can do this relatively easily using the <code class="docutils literal notranslate"><span class="pre">tbl_regression</span></code> function within the <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> package. The researchers are interested in the association between hypertension and sleep, the other factors are just being adjusted for, so we only include <code class="docutils literal notranslate"><span class="pre">sleep_hrs_night</span></code>. We also want the table to be readable and so we make sure that the variable names in the table are not their coded R names. We will also make sure our p-values have are rounded to 3 digits using the <code class="docutils literal notranslate"><span class="pre">pvalue_fun</span></code> argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the table</span>
+<span class="n">sleep_model_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_model</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">   </span><span class="nf">tbl_regression</span><span class="p">(</span><span class="n">exponentiate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1"># print the actual odds rather than log odds</span>
+<span class="w">                  </span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sleep_hrs_night&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># keep only sleep variable</span>
+<span class="w">                  </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># fix label</span>
+<span class="w">                  </span><span class="n">pvalue_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="nf">style_sigfig</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span><span class="w"> </span><span class="c1"># fix p-value rounding</span>
+<span class="c1"># display the table</span>
+<span class="n">sleep_model_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does this tell us? Well the odds ratio is less than one meaning sleep has a “protective” effect - the participants who sleep more are less likely to have hypertension and the p-value is less than 0.05 so this is a significant effect. However, there are a lot of things this data and result cannot tell us and so we shoule be careful making inferences about sleep and hyptension just yet!</p>
+</section>
+<section id="assumption-checking">
+<h2>Assumption Checking<a class="headerlink" href="#assumption-checking" title="Link to this heading">#</a></h2>
+<p>It is important to check that your model is valid, by making sure none of the modelling assumptions are violated. For strictly <strong>linear models</strong>, the acronym <strong>LINE</strong> is useful for remembering the assumptions.</p>
+<ul class="simple">
+<li><p><strong>Linearity</strong>: the outcome should have a linear relationship with the predictor variables.</p></li>
+<li><p><strong>Independence</strong>: the observations should be independent.</p></li>
+<li><p><strong>Normal distribution</strong>: the errors should have a normal distribution.</p></li>
+<li><p><strong>Equal (constant) variance</strong></p></li>
+</ul>
+<p>These assumptions change sightly when working with Generalised Linear Models (GLMs), in large part because we are now assuming a different underlying distribution (in our case the binomial distribution). Thus, the assumptions we will check are as follows:</p>
+<ul class="simple">
+<li><p><strong>Linearity</strong>: rather than assuming the probability of the outcome is linearly related to the predictors, the model assumes that the log-odds (logit) of the probability of the outcome is linearly related to the predictors.
+• Independence: observations are independent</p></li>
+</ul>
+<p>To assess the linearity, we will plot the predicted values of the outcome against any continuous covariates in the model (only age and hours of sleep in our case). First we need to save the predicted values on the logit scale from the model to our data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save predicted values to the data frame</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">sleep_model</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will create two scatterplots with <code class="docutils literal notranslate"><span class="pre">predictions</span></code> on the y-axis and the covariates (<code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">sleep_hours</span></code>) on the x-axis. If the scatter
+shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot logit scale predictions against age</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">theme_bw</span><span class="p">()</span>
+<span class="c1"># Plot logit scale predictions against number of hours of sleep</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hours of Sleep Per Night&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="nf">theme_bw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both appear more or less linear so the linearity assumption is also satisfied for hours of sleep.</p>
+<p>Finally, on to independence. It is reasonable to assume our observations are independent as there are no repeated
+measurements (i.e. every participant only appears in the data set one time) and there are no other clustering mechanisms
+(e.g. patients within hospitals, students within schools, etc.).</p>
 </section>
 </section>
 
@@ -1233,6 +1387,11 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisations">Visualisations</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphs">Graphs</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-checking">Assumption Checking</a></li>
 </ul>
 </li>
 </ul>
