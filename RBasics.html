@@ -383,6 +383,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data Frames</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-exporting-data">Importing/Exporting Data</a></li>
 </ul>
             </nav>
         </div>
@@ -407,14 +408,15 @@
 <li><p>top left - any current script(s) (e.g. our RBasics.R script)</p></li>
 <li><p>bottom left - a console for experimental commands and any R output</p></li>
 <li><p>top right - the working environment with any saved variables or data structures</p></li>
-<li><p>bottom right - extras such as a files tab and R Help</p></li>
+<li><p>bottom right - extras such as a files tab and R Help
+If you have no current script open the left panel will be taken up completely by the console. If you want to change the layout you can go to View-&gt;Panes and select your preferred option.</p></li>
 </ul>
-<p><img alt="panels" src="_images/panels.png" /></p>
+<p><img alt="panels" src="https://github.com/CicelyKrystyna/MD4002_RWorkshop/blob/main/images/panels.png?raw=1" /></p>
 <section id="the-console">
 <h3>The Console<a class="headerlink" href="#the-console" title="Link to this heading">#</a></h3>
 <p>If you want to test out a line of code (command) you can run it in the console before copying it to your script. Some useful features:</p>
 <ul class="simple">
-<li><p>You can use your keyboards up/down arrows to scroll back through previous commands.</p></li>
+<li><p>You can use your keyboard’s up/down arrows to scroll back through previous commands.</p></li>
 <li><p>You can use <code class="docutils literal notranslate"><span class="pre">^R</span></code> to search your command history.</p></li>
 <li><p>You can clear the console using <code class="docutils literal notranslate"><span class="pre">^L</span></code>.</p></li>
 </ul>
@@ -433,11 +435,15 @@
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lines of code typed into the console are not saved. This is why we create scripts to store our code.</p>
+</div>
 </section>
 </section>
 <section id="preamble">
 <h2>Preamble<a class="headerlink" href="#preamble" title="Link to this heading">#</a></h2>
-<p>Our script is where we will write and execute our code. Lets start our script <strong>RBasics.R</strong> by adding some preamble.</p>
+<p>Our script is where we will write and then execute our code. Let us start our script <strong>RBasics.R</strong> by adding some preamble.</p>
 <p>In RStudio you can create (collapsible) sections to keep your code organised. To create a section in R Studio go to Code-&gt;Insert Section, a pop up box will appear for you to name your section. We will start by creating a section called “Preamble”. Once you click ok you should get something that looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -465,7 +471,7 @@
 </section>
 <section id="install-load-packages">
 <h3>Install/Load Packages<a class="headerlink" href="#install-load-packages" title="Link to this heading">#</a></h3>
-<p>Next you will need to install/load packages. We <strong>install</strong> packages in R once. We <strong>load</strong> packages we are going to use everytime we open/start R.</p>
+<p>Next you will need to install/load packages. We <strong>install</strong> packages in R once. We <strong>load</strong> packages we are going to use everytime we open/start R/RStudio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install your packages (first use only)</span>
@@ -560,7 +566,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>R, like most coding languages, follows the traditional mathematical rules of precedence, i.e. <a href="https://www.bbc.co.uk/bitesize/articles/znm8cmn#:~:text=BIDMAS%20is%20an%20acronym%20used,%2C%20Multiplication%2C%20Addition%2C%20Subtraction" target="_blank">BIDMAS</a>.</p>
+<p>R, like most coding languages, follows the traditional mathematical rules of precedence, i.e. <a href="https://www.bbc.co.uk/bitesize/articles/znm8cmn#:~:text=BIDMAS%20is%20an%20acronym%20used,%2C%20Multiplication%2C%20Addition%2C%20Subtraction" target="_blank">BIDMAS</a> or <a href="https://www.mathsisfun.com/operation-order-pemdas.html" targe="_blank">PEMDAS</a>.</p>
 </div>
 <p>There are many other simple functions such as</p>
 <ul class="simple">
@@ -570,7 +576,7 @@
 <li><p>to calculate the mean <code class="docutils literal notranslate"><span class="pre">mean()</span></code></p></li>
 <li><p>to round numbers <code class="docutils literal notranslate"><span class="pre">round()</span></code></p></li>
 </ul>
-<p>Some of these functions can take additional arguments such as <code class="docutils literal notranslate"><span class="pre">round()</span></code> which allows you to specify how many decimal places you would like to round to</p>
+<p>Some of these functions can take additional arguments such as <code class="docutils literal notranslate"><span class="pre">round()</span></code> which allows you to specify how many decimal places you would like to round to, for example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="kc">pi</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
@@ -598,7 +604,7 @@
 </div>
 </div>
 </div>
-<p>Anything you want R to print verbatim you put inside “” and anything else must either be an object or some function or operation which R can carry out. The final “\n” tells are to start a new line on ending the statement.</p>
+<p>Anything you want R to print verbatim you put inside “ “ and anything else must either be an object or some function or operation which R can carry out. The final “\n” tells are to start a new line on ending the statement.</p>
 </section>
 </section>
 <section id="objects-in-r">
@@ -658,8 +664,8 @@
 <section id="the-environment-panel">
 <h3>The Environment Panel<a class="headerlink" href="#the-environment-panel" title="Link to this heading">#</a></h3>
 <p>After assigning these six objects our environment panel should look like this:</p>
-<p><img alt="environment" src="_images/environment.png" /></p>
-<p>The environment panel provides details on objects which have been assigned, the data they contain and their class.</p>
+<p><img alt="environment" src="https://github.com/CicelyKrystyna/MD4002_RWorkshop/blob/main/images/environment.png?raw=1" /></p>
+<p>The blue arrow buttons allow you to expand or collapse the information about more complicated objects like lists and dataframes. The environment panel provides details on objects which have been assigned, the data they contain and their class.</p>
 </section>
 <section id="classes-of-objects">
 <h3>Classes of Objects<a class="headerlink" href="#classes-of-objects" title="Link to this heading">#</a></h3>
@@ -718,7 +724,7 @@
 </div>
 </div>
 </div>
-<p>R is reasonably good at selecting the correct <strong>type</strong> and <strong>class</strong> for each object. If it is wrong it will typically be becuase of the way the data has been assigned.</p>
+<p>R is reasonably good at selecting the correct <strong>type</strong> and <strong>class</strong> for each object. If it is wrong it will typically be becuase of the way the data has been entered.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A list in R can contain data of different forms (e.g. numbers and words) because each entry in a list can have a different class/type. Other structures are restricted to being of one class/type only.</p>
@@ -759,7 +765,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>When we force my_mixedset to be stored as a numeric object any strings are lost (irrevocably) and replaced by a mising data indicator NA. In <a class="reference external" href="https://cicelykrystyna.github.io/MD4002_RWorkshop/MD4002_RWorkshop.html">Data Workflow</a> there is a more detailed example of how we can convert the “two” to a 2 so as to not lose this data entry.</p>
+<p>When we force my_mixedset to be stored as a numeric object any strings are lost (irrevocably) and replaced by a mising data indicator NA. In the R Workshop there is a more detailed example of how we can convert the “two” to a 2 so as to not lose this data entry.</p>
 </div>
 <p>We can also change the more specific type of an object, for example,</p>
 <div class="cell docutils container">
@@ -874,7 +880,7 @@
 <p>If you are working with data you are almost certainly going to be using <strong>data frames</strong>. A data frame is essentially a table of observations for different variables of interest. Each column represents a variable and the rows are individual observations.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Data frames can contain data of different types/class - each column/variable will be designated a class. However, the length of each column must be the same, i.e. there must be an observation provided for each variable or a missing placeholder (NA) must be used.</p>
+<p>Data frames can contain data of different types/class but each column/variable will be designated a single class. The length of each column must be the same, i.e. there must be an observation provided for each variable or a missing placeholder (NA) must be used.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,6 +1021,11 @@
 </div>
 </section>
 </section>
+<section id="importing-exporting-data">
+<h2>Importing/Exporting Data<a class="headerlink" href="#importing-exporting-data" title="Link to this heading">#</a></h2>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file). We can read such into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">tidyverse</span></code> package.</p>
+<p>It may be that you are creating your own data and storing this in an excel spreadsheet. You can easily create a CSV file from excel by going to File-&gt;Save As and selecting CSV from the File Format dropdown menu. If you are creating your own data use the first row to store sensible, short but informative column headings which will become the name of your variables in R.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1107,6 +1118,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frames">Data Frames</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-exporting-data">Importing/Exporting Data</a></li>
 </ul>
   </nav></div>
 
