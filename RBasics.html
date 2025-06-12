@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>An Introduction to R &#8212; R Workshop</title>
+    <title>Introduction to R &#8212; R Workshop</title>
   
   
   
@@ -173,15 +173,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">An Introduction to R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to R</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conducting a Data Project</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="MD4002_RWorkshop.html">Data Workflow</a></li>
-
-
-
-
 </ul>
 
     </div>
@@ -348,7 +344,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>An Introduction to R</h1>
+    <h1>Introduction to R</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,8 +391,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-r">
-<h1>An Introduction to R<a class="headerlink" href="#an-introduction-to-r" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-r">
+<h1>Introduction to R<a class="headerlink" href="#introduction-to-r" title="Link to this heading">#</a></h1>
 <p>R is a language and environment for statistical computing and graphics. You can read more about it <a href="https://www.r-project.org/about.html" target="_blank">here</a>.</p>
 <p>In this Notebook we will point out <strong>some</strong> useful basics of R to help you get started. If you want to learn more then there are some select resources listed in the guided study on Galen.</p>
 <p>We will be assuming you are following along using RStudio, but you can also interact with the code by clicking the rocket launch button in the top right to open this in Google Colab.</p>
@@ -408,9 +404,9 @@
 <li><p>top left - any current script(s) (e.g. our RBasics.R script)</p></li>
 <li><p>bottom left - a console for experimental commands and any R output</p></li>
 <li><p>top right - the working environment with any saved variables or data structures</p></li>
-<li><p>bottom right - extras such as a files tab and R Help
-If you have no current script open the left panel will be taken up completely by the console. If you want to change the layout you can go to View-&gt;Panes and select your preferred option.</p></li>
+<li><p>bottom right - extras such as a files tab and R Help</p></li>
 </ul>
+<p>If you have no current script open the left panel will be taken up completely by the console. If you want to change the layout you can go to View-&gt;Panes and select your preferred option.</p>
 <p><img alt="panels" src="https://github.com/CicelyKrystyna/MD4002_RWorkshop/blob/main/images/panels.png?raw=1" /></p>
 <section id="the-console">
 <h3>The Console<a class="headerlink" href="#the-console" title="Link to this heading">#</a></h3>
@@ -579,7 +575,8 @@ If you have no current script open the left panel will be taken up completely by
 <p>Some of these functions can take additional arguments such as <code class="docutils literal notranslate"><span class="pre">round()</span></code> which allows you to specify how many decimal places you would like to round to, for example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="kc">pi</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># print pi correct to six decimal places</span>
+<span class="nf">round</span><span class="p">(</span><span class="kc">pi</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -604,7 +601,7 @@ If you have no current script open the left panel will be taken up completely by
 </div>
 </div>
 </div>
-<p>Anything you want R to print verbatim you put inside “ “ and anything else must either be an object or some function or operation which R can carry out. The final “\n” tells are to start a new line on ending the statement.</p>
+<p>Anything you want R to print verbatim you put inside “ “ and anything else must either be an object or some function or operation which R can carry out. The final “\n” tells R to start a new line on ending the statement.</p>
 </section>
 </section>
 <section id="objects-in-r">
@@ -663,7 +660,7 @@ If you have no current script open the left panel will be taken up completely by
 </section>
 <section id="the-environment-panel">
 <h3>The Environment Panel<a class="headerlink" href="#the-environment-panel" title="Link to this heading">#</a></h3>
-<p>After assigning these six objects our environment panel should look like this:</p>
+<p>After assigning these five objects our environment panel (top right in RStudio) should look like this:</p>
 <p><img alt="environment" src="https://github.com/CicelyKrystyna/MD4002_RWorkshop/blob/main/images/environment.png?raw=1" /></p>
 <p>The blue arrow buttons allow you to expand or collapse the information about more complicated objects like lists and dataframes. The environment panel provides details on objects which have been assigned, the data they contain and their class.</p>
 </section>
@@ -789,7 +786,7 @@ If you have no current script open the left panel will be taken up completely by
 <p>Sometimes our data may be stored as a set of true/false responses. R stores these as <strong>logicals</strong>. We tell R this by writing TRUE or FALSE or more simply using T or F, for example,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of true/false repsonses to the object my_truefalseset</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign a set of true/false responses to the object my_truefalseset</span>
 <span class="n">my_truefalseset</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="bp">F</span><span class="p">,</span><span class="bp">T</span><span class="p">,</span><span class="bp">T</span><span class="p">,</span><span class="bp">F</span><span class="p">,</span><span class="bp">T</span><span class="p">)</span>
 <span class="c1"># give the class of my_truefalseset</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The object my_truefalseset is of class:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">class</span><span class="p">(</span><span class="n">my_truefalseset</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
@@ -1023,7 +1020,7 @@ If you have no current script open the left panel will be taken up completely by
 </section>
 <section id="importing-exporting-data">
 <h2>Importing/Exporting Data<a class="headerlink" href="#importing-exporting-data" title="Link to this heading">#</a></h2>
-<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file). We can read such into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">tidyverse</span></code> package.</p>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file). We can read such a file into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">tidyverse</span></code> package.</p>
 <p>It may be that you are creating your own data and storing this in an excel spreadsheet. You can easily create a CSV file from excel by going to File-&gt;Save As and selecting CSV from the File Format dropdown menu. If you are creating your own data use the first row to store sensible, short but informative column headings which will become the name of your variables in R.</p>
 <p>This is a very brief introduction to the basics of R. Carry on with Task 2 in the guided study to get some more hands on practise.</p>
 </section>
