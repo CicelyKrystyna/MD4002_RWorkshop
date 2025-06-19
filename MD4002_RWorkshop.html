@@ -357,6 +357,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rstudio-set-up">RStudio Set-up</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-setting">Path Setting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-environment">Clearing the Environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
 </ul>
 </li>
@@ -426,7 +427,7 @@
 </section>
 <section id="rstudio-set-up">
 <h2>RStudio Set-up<a class="headerlink" href="#rstudio-set-up" title="Link to this heading">#</a></h2>
-<p>When conducting your data analysis project you will want to keep all of your files organised. We suggest you set up a directory (folder) to store all of your files (data and outputs) and name it appropriately, for example, create a directory called DataProject. Download the <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file from GALEN and place it in this directory.</p>
+<p>When conducting your data analysis project you will want to keep all of your files organised. We suggest you set up a directory (folder) to store all of your files (data and outputs) and name it appropriately, for example, create a directory called DataProject. Download the <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file from Galen and place it in this directory.</p>
 <p>Create a script called <strong>DataWorkflow.R</strong> and save it to this directory too. Now we can get started by adding some preamble.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -448,12 +449,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install your packages (first use only)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># install your packages (first use only)</span>
 <span class="c1"># install.packages(&quot;tidyverse&quot;)</span>
 <span class="c1"># install.packages(&quot;janitor&quot;)</span>
 <span class="c1"># install.packages(&quot;gtsummary&quot;)</span>
 
-<span class="c1"># Load your packages (everytime you restart R)</span>
+<span class="c1"># load your packages (everytime you restart R)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">gtsummary</span><span class="p">)</span>
@@ -494,13 +495,26 @@ from the stats package we would write <code class="docutils literal notranslate"
 </section>
 <section id="path-setting">
 <h3>Path Setting<a class="headerlink" href="#path-setting" title="Link to this heading">#</a></h3>
-<p>It is often useful to determine your working directory (or path) - we can set the path to be the DataProject directory you created. This means when pointing to files e.g. <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> you can keep your path short. Equally, all saved outputs from R will save to this directory by default.</p>
+<p>It is often useful to determine your working directory (or path) - we can set the path to be the DataProject directory you created as follows. This means that R will take all inputs (e.g. the <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file) from this directory and place all outputs (saved plots and tables) in this directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># an example of path setting</span>
-<span class="c1">#getwd()</span>
-<span class="c1">#setwd(&quot;~/Documents/DataProject&quot;)</span>
-<span class="c1">#getwd()</span>
+<span class="c1"># getwd() will tell you what your working directory is</span>
+<span class="c1"># getwd()</span>
+<span class="c1"># setwd(&quot;path&quot;) will set your working directory</span>
+<span class="c1"># setwd(&quot;~/Documents/DataProject&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clearing-the-environment">
+<h3>Clearing the Environment<a class="headerlink" href="#clearing-the-environment" title="Link to this heading">#</a></h3>
+<p>When you start up a new session on RStudio you might want to clear the environment of any assigned objects. You can do this by either pressing the broom in the environment panel or by using <code class="docutils literal notranslate"><span class="pre">rm(list</span> <span class="pre">=</span> <span class="pre">ls())</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># clear everything from the environment</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -508,12 +522,11 @@ from the stats package we would write <code class="docutils literal notranslate"
 </section>
 <section id="load-in-your-data">
 <h3>Load in your Data<a class="headerlink" href="#load-in-your-data" title="Link to this heading">#</a></h3>
-<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file) such as our <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file. We can read this into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function.</p>
+<p>There are a variety of different ways to read data into R, since there are a variety of different ways to save and store data. One of the more common ways to save data is as a CSV (comma delimited file) such as our <code class="docutils literal notranslate"><span class="pre">sleep.csv</span></code> file. We can read this into R using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function which will read in the data as a dataframe which is the object that R uses to store data sets. In the below code you can uncomment and use the line <code class="docutils literal notranslate"><span class="pre">sleep</span> <span class="pre">&lt;-</span> <span class="pre">read_csv(&quot;sleep.csv&quot;)</span></code> but in order for this notebook to work I’ve had to point to a version of the file stored on github - note the much longer path to the file!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in your data and assign this to a dataframe called sleep</span>
-<span class="c1"># A dataframe is the object R uses to store data sets</span>
-<span class="c1">#sleep &lt;- read_csv(&quot;sleep.csv&quot;)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in your data and assign this to a dataframe called sleep</span>
+<span class="c1"># sleep &lt;- read_csv(&quot;sleep.csv&quot;)</span>
 <span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;https://raw.github.com/CicelyKrystyna/MD4002_RWorkshop/master/sleep.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -559,16 +572,21 @@ from the stats package we would write <code class="docutils literal notranslate"
 <li><p>coded variables (e.g. 99 = Missing)</p></li>
 <li><p>typos (e.g. ys, yse)</p></li>
 <li><p>inconsistent capitalisation or abbreviations (e.g. Yes, Y, yes)</p></li>
-<li><p>misaligned/counterintuertive variable types</p></li>
+<li><p>misaligned/counterintuertive variable types (e.g numbers stored as characters)</p></li>
 </ul>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>It is <strong>bad practice</strong> to look at your data to determine patterns or to determine what research questions you should ask and test.</p>
 </div>
 <p>There are a couple of different ways you can look more closely at your data:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">glimpse</span></code> will tell you the size of your dataframe - the number of rows and columns. It will also provide information on each column -  the name of each column (variable), its type/class and the first few entries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">head</span></code> (<code class="docutils literal notranslate"><span class="pre">tail</span></code>) show the first (last) n rows which you have to specify using e.g. <code class="docutils literal notranslate"><span class="pre">head(sleep,</span> <span class="pre">n=2)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">View</span></code> will open up the dataframe in a new tab in the top left of RStudio which you can then scroll through. An alternative, equivalent to using <code class="docutils literal notranslate"><span class="pre">View(sleep)</span></code>, is to click on sleep in the environment panel.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse provides information on each column: it&#39;s name, type/class and the first few entries:</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># glimpse the data</span>
 <span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -606,37 +624,19 @@ $ BMI             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># head (tail) shows the first (last) n rows:</span>
-<span class="c1"># head(sleep, n=2)</span>
-<span class="c1"># tail(sleep, n=3)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># View will open the whole dataframe</span>
-<span class="c1"># View(sleep)</span>
-<span class="c1"># alternatively in RStudio click on sleep in the environment panel</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>I have commented <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code> and <code class="docutils literal notranslate"><span class="pre">View</span></code> out to save taking up lots of space but try them out for yourself. An alternative, equivalent to using <code class="docutils literal notranslate"><span class="pre">View(sleep)</span></code>, is to click on sleep in the environment panel which will open up the dataframe in a new tab in the top left of RStudio.</p>
+<p>One thing we can see when we glimpse our sleep data is that the column (variable) names are inconsistent. We see a mixture of lower and upper case combined with different naming conventions. For example, MaritalStatus written in PascalCase, sleep_trouble wirtten in snake_case and age (months) containing a space and brackets. We will deal with this first as part of our data cleaning.</p>
 </section>
 <section id="data-cleaning-and-preparation">
 <h3>Data Cleaning and Preparation<a class="headerlink" href="#data-cleaning-and-preparation" title="Link to this heading">#</a></h3>
 <section id="cleaning-column-names">
 <h4>Cleaning column names<a class="headerlink" href="#cleaning-column-names" title="Link to this heading">#</a></h4>
-<p>A good first step is to clean column names, in case there are any odd symbols or mixed cases. The quickest way to do this is with the clean_names function from the <code class="docutils literal notranslate"><span class="pre">janitor</span></code> package.</p>
+<p>A good first step is to clean column names, in case there are any odd symbols or mixed cases. The quickest way to do this is with the clean_names function from the <code class="docutils literal notranslate"><span class="pre">janitor</span></code> package. This defaults to snake_case but you can specify the case if as per this <a class="reference external" href="https://www.rdocumentation.org/packages/janitor/versions/1.2.0/topics/clean_names">documentation</a> if you prefer a different naming convention.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># fix column names reassigning this to the dataframe sleep</span>
 <span class="n">sleep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clean_names</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
 
-<span class="c1"># glimpse the dataframe to see the changes that have been made</span>
+<span class="c1"># glimpse the dataframe again to see the changes that have been made</span>
 <span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -678,25 +678,25 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <section id="trimming-the-data">
 <h4>Trimming the data<a class="headerlink" href="#trimming-the-data" title="Link to this heading">#</a></h4>
 <p>It is often practical to trim your data set down to only the
-<strong>necessary variables</strong> (columns). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a> and we will keep the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> too as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
+<strong>necessary variables</strong> (columns). We can easily do this using the <code class="docutils literal notranslate"><span class="pre">select</span></code> function. We will keep the variables mentioned in the <a class="reference internal" href="#scenario"><span class="xref myst">Scenario</span></a> along with the gender variable <code class="docutils literal notranslate"><span class="pre">[gender]</span></code> as there may be interesting sex-stratified differences in the data. It is also important to keep the identifier <code class="docutils literal notranslate"><span class="pre">[id]</span></code> for each data entry.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>It is best practise to preserve the original dataframe so when we trim we assign this to a new dataframe.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># trim sleep to select columns only and assign this to a new dataframe sleep_trim</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># trim sleep to select columns and assign this to a new dataframe sleep_trim</span>
 <span class="n">sleep_trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">gender</span><span class="p">,</span>
-<span class="w">    </span><span class="n">age</span><span class="p">,</span>
-<span class="w">    </span><span class="n">hypertension</span><span class="p">,</span>
-<span class="w">    </span><span class="n">sleep_hrs_night</span><span class="p">,</span>
-<span class="w">    </span><span class="n">phys_active</span><span class="p">,</span>
-<span class="w">    </span><span class="n">smoke_now</span><span class="p">,</span>
-<span class="w">    </span><span class="n">alcohol_day</span><span class="p">,</span>
-<span class="w">    </span><span class="n">regular_marij</span><span class="p">,</span>
-<span class="w">    </span><span class="n">bmi</span><span class="p">)</span>
+<span class="w">         </span><span class="n">gender</span><span class="p">,</span>
+<span class="w">         </span><span class="n">age</span><span class="p">,</span>
+<span class="w">         </span><span class="n">hypertension</span><span class="p">,</span>
+<span class="w">         </span><span class="n">sleep_hrs_night</span><span class="p">,</span>
+<span class="w">         </span><span class="n">phys_active</span><span class="p">,</span>
+<span class="w">         </span><span class="n">smoke_now</span><span class="p">,</span>
+<span class="w">         </span><span class="n">alcohol_day</span><span class="p">,</span>
+<span class="w">         </span><span class="n">regular_marij</span><span class="p">,</span>
+<span class="w">         </span><span class="n">bmi</span><span class="p">)</span>
 
 <span class="c1"># glimpse the new dataframe</span>
 <span class="nf">glimpse</span><span class="p">(</span><span class="n">sleep_trim</span><span class="p">)</span>
@@ -730,7 +730,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a summary of the age variable belonging to the sleep_trim dataframe</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarise the age variable belonging to the sleep_trim dataframe</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">sleep_trim</span><span class="o">$</span><span class="n">age</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -745,9 +745,9 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <p>This looks reasonable and so we can proceed to filter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter sleep_trim to select entries we want to keep assigned to a new dataframe</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter sleep_trim to only those rows with age greater than or equal to 40</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_trim</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">filter</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span><span class="w"> </span><span class="c1">#only those rows with age&gt;=40</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span>
 
 <span class="c1"># add a check that the filter worked</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;The minimum age of our data set is:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">sleep_40</span><span class="o">$</span><span class="n">age</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
@@ -799,7 +799,7 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </div>
 </div>
 </div>
-<p>Although the classification of <code class="docutils literal notranslate"><span class="pre">[age]</span></code> and <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> seems appropriate, we notice that <code class="docutils literal notranslate"><span class="pre">[alcolhol_day]</span></code> is classed as a character when we would expect the ammount someone drinks to be recorded as a numeric value. This is something we will need to check and fix.</p>
+<p>Although the classification of <code class="docutils literal notranslate"><span class="pre">[age]</span></code> and <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code> seems appropriate, we notice that <code class="docutils literal notranslate"><span class="pre">[alcolhol_day]</span></code> is classed as a character when we would expect the amount someone drinks to be recorded as a numeric value. This is something we will need to check and fix.</p>
 <p>We will go through each of our variables in turn and check for required fixes.</p>
 <p>In addition to each variable having a type/class in R they also fall into statistical types:</p>
 <ul class="simple">
@@ -834,10 +834,6 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 <p>Although the values look reasonable, 4 hours is not a lot of sleep. In practice, it might be worth checking back with the data provider to make sure that there is not a typo somewhere.</p>
 </div>
 <p>Next we will check our outcome variable, in this case whether a participant has hypertension or not, <code class="docutils literal notranslate"><span class="pre">[hypertension]</span></code>. This is a catergorical variable in our data set so we can tabulate the responses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Hypertension could have been recorded as a dichotomous variable since the response could have been yes or no to a question does the participant have hypertension?</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a table of values for hypertension</span>
@@ -853,6 +849,10 @@ $ bmi             &lt;dbl&gt; 43.41, 38.70, 38.46, 37.77, 36.15, 35.60, 35.41, 3
 </div>
 </div>
 <p>This is good, there are two possible responses as we would expect.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hypertension could have been recorded as a dichotomous variable since the response could have been yes or no to a question does the participant have hypertension?</p>
+</div>
 <p>Now let’s fix the <code class="docutils literal notranslate"><span class="pre">[alcohol_day]</span></code> variable, which we saw earlier was classed a character variable. We will tabulate the variable to see what is going on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -888,13 +888,15 @@ that if there is text in even just one row of a column, R will save that whole c
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a numeric alcohol drink count variable called alcohol_day_num</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">mutate</span><span class="p">(</span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="c1"># if alcohol_day is one replace with 1</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;One&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
-<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span><span class="w"> </span><span class="c1"># Reclassing the remaining numbers as numeric type</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                     </span><span class="c1"># if alcohol_day is one replace with 1</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;One&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">                                     </span><span class="c1"># class as numeric type</span>
+<span class="w">                                     </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -917,10 +919,11 @@ Caused by warning:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a numeric alcohol drink count variable called alcohol_day_num</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">mutate</span><span class="p">(</span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;One&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="c1">#replace one or One with 1</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
-<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;One&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                     </span><span class="c1"># replace one or One with 1</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;thre&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">alcohol_day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;six&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">                                     </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">alcohol_day</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1023,11 +1026,11 @@ between two values.</p>
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a discrete BMI variable called bmi_group</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">mutate</span><span class="p">(</span><span class="n">bmi_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">18.5</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Underweight&quot;</span><span class="p">,</span>
-<span class="w">                             </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">18.5</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Healthy&quot;</span><span class="p">,</span>
-<span class="w">                             </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Overweight&quot;</span><span class="p">,</span>
-<span class="w">                             </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Obese&quot;</span><span class="p">,</span>
-<span class="w">                             </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w"> </span><span class="c1"># any values that are not captured by the conditions are set as missing</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">bmi_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">18.5</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Underweight&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">18.5</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Healthy&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Overweight&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">bmi</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Obese&quot;</span><span class="p">,</span>
+<span class="w">                               </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1050,11 +1053,11 @@ between two values.</p>
 <p>We can also check that we got our groupings correct. The following lines of code show that our minimum and maximum values all line up with the correct BMI groupings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">group_by</span><span class="p">(</span><span class="n">bmi_group</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="nf">summarise</span><span class="p">(</span><span class="n">min_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">bmi</span><span class="p">),</span><span class="w"> </span><span class="c1"># calculate the minimum and maximum bmi in each group</span>
-<span class="w">          </span><span class="n">max_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">bmi</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">            </span><span class="nf">arrange</span><span class="p">(</span><span class="n">min_bmi</span><span class="p">)</span><span class="w"> </span><span class="c1"># arrange in ascending min_bmi order (default alphabetical)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the minimum and maximum bmi in each group and tabulate</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">bmi_group</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">min_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">bmi</span><span class="p">),</span>
+<span class="w">            </span><span class="n">max_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">bmi</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1066,6 +1069,41 @@ between two values.</p>
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
+	<tr><td>Healthy    </td><td>18.50</td><td>24.99</td></tr>
+	<tr><td>Obese      </td><td>30.00</td><td>81.25</td></tr>
+	<tr><td>Overweight </td><td>25.00</td><td>29.96</td></tr>
+	<tr><td>Underweight</td><td>15.02</td><td>18.44</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Our groupings do look correct but do you see the way that R has chosen to list them in this table? The BMI groupings we have created have a clear intrinsic order (ordinal) which we know but R does not so it orders them alphabetically by default. We can tell R the correct order by saving <code class="docutils literal notranslate"><span class="pre">bmi_group</span></code> as a factor and tell R the order we want the catergories to be stored in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># store bmi_group as a factor with specified ordering</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">bmi_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">bmi_group</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Underweight&quot;</span><span class="p">,</span>
+<span class="w">                                       </span><span class="s">&quot;Healthy&quot;</span><span class="p">,</span>
+<span class="w">                                       </span><span class="s">&quot;Overweight&quot;</span><span class="p">,</span>
+<span class="w">                                       </span><span class="s">&quot;Obese&quot;</span><span class="p">)))</span>
+
+<span class="c1"># re-tabulate</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">bmi_group</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">min_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">bmi</span><span class="p">),</span>
+<span class="w">            </span><span class="n">max_bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">bmi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 4 × 3</caption>
+<thead>
+	<tr><th scope=col>bmi_group</th><th scope=col>min_bmi</th><th scope=col>max_bmi</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
 	<tr><td>Underweight</td><td>15.02</td><td>18.44</td></tr>
 	<tr><td>Healthy    </td><td>18.50</td><td>24.99</td></tr>
 	<tr><td>Overweight </td><td>25.00</td><td>29.96</td></tr>
@@ -1074,7 +1112,7 @@ between two values.</p>
 </table>
 </div></div>
 </div>
-<p>We have checked all the variables and fixed any issues.</p>
+<p>Much better! We have checked all the variables and fixed any issues.</p>
 </section>
 </section>
 </section>
@@ -1083,7 +1121,7 @@ between two values.</p>
 <p>Now that the data is cleaned and ready to go we can start creating our data summaries and visuals.</p>
 <section id="tables">
 <h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
-<p>Let’s create a table for the research project. A table should include all the variables of interest in the study and thus, describes the sample.
+<p>Let us create a table for the research project. A table should include all the variables of interest in the study and thus, describes the sample.
 We will use the <code class="docutils literal notranslate"><span class="pre">select</span></code> function to pick the variables to include in the table and the <code class="docutils literal notranslate"><span class="pre">tbl_summary</span></code> function from the <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> package to create the table. The package <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> creates publication ready tables and visuals. You will have hopefully looked through the gtsummary documentation provided on Galen as part of the guided reading.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1103,20 +1141,25 @@ We will use the <code class="docutils literal notranslate"><span class="pre">sel
 <span class="w">         </span><span class="n">bmi_group</span><span class="p">,</span>
 <span class="w">         </span><span class="n">hypertension</span><span class="p">,</span>
 <span class="w">         </span><span class="n">sleep_hrs_night</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">           </span><span class="nf">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Missing)&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="c1"># define clear labels for each variable</span>
-<span class="w">                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">gender</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">age</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">phys_active</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Regularly Physically Activity&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">smoke_now</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Current Smoker&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Alcohol Drinks per Day&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">regular_marij</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Regular Marijuana User&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">bmi_group</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;BMI&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">hypertension</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">))</span>
+<span class="w">  </span><span class="nf">tbl_summary</span><span class="p">(</span><span class="n">missing_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Missing)&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="c1"># define clear labels for each variable</span>
+<span class="w">              </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">gender</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Gender&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">age</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">phys_active</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Regularly Physically Active&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">smoke_now</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Current Smoker&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Alcohol Drinks per Day&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">regular_marij</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Regular Marijuana User&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">bmi_group</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;BMI&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">hypertension</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">))</span>
 
 <span class="c1"># display the table</span>
 <span class="c1"># table_1</span>
+
+<span class="c1"># save your table in your preferred format</span>
+<span class="c1"># use extensions .png, .html, .docx, .rtf, .tex, .ltx</span>
+<span class="c1"># as_gt(table_1) %&gt;%</span>
+<span class="c1">#   gt::gtsave(filename = &quot;table.png&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -1126,7 +1169,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">sel
 </section>
 <section id="graphs">
 <h3>Graphs<a class="headerlink" href="#graphs" title="Link to this heading">#</a></h3>
-<p>We will create a simple graph of the average number of hours a participant slept per night grouped by the participants hypertension status. We will create a box plot, where separate boxes are used for participants with and without hypertension.
+<p>We will now create a simple graph of the average number of hours a participant slept per night grouped by the participants hypertension status. We will create a box plot, where separate boxes are used for participants with and without hypertension.
 Let us start with a basic box plot of hours of sleep per night and then make it look better with a few tweaks.
 We will use the <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function and <code class="docutils literal notranslate"><span class="pre">geom_boxplot</span></code>.</p>
 <div class="cell docutils container">
@@ -1151,11 +1194,12 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># an updated boxplot with aesthetic improvements</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hypertension</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hypertension</span><span class="p">,</span>
 <span class="w">             </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hypertension</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hypertension</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add colour</span>
 <span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#7c3b37&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#004c4e&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add defined outlines to boxes</span>
+<span class="w">  </span><span class="nf">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#7c3b37&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#004c4e&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add defined outlines</span>
 <span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hypertension Status&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hours of Sleep/Night&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># fix labels</span>
 <span class="w">  </span><span class="nf">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># remove legend</span>
 <span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># change background</span>
@@ -1167,7 +1211,7 @@ We will use the <code class="docutils literal notranslate"><span class="pre">ggp
 <a class="reference internal image-reference" href="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png"><img alt="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" src="_images/b1a27e690ea995954a5e34a2c0028345a2a70de2aa11adde934f741b2ad26da4.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
-<p>This already looks better.</p>
+<p>This already looks better. If you want to save the plot in you preferred format you can use assign your plot to an object (called plot perhaps) and then use <code class="docutils literal notranslate"><span class="pre">ggsave(plot,filename=&quot;plot.png&quot;,width=20,height=20,units=&quot;cm&quot;)</span></code>. You can change the format by changing the extension and change the dimensions by updating the values for width and height.</p>
 </section>
 </section>
 <section id="analysis">
@@ -1185,10 +1229,11 @@ within base R (i.e. it is a default function in R and we do not need to load a p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">   </span><span class="nf">mutate</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
-<span class="w">                                   </span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;No Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
-<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># flag hypertension as 1 and no hypertension as 0</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                          </span><span class="n">hypertension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;No Hypertension&quot;</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">                                          </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1196,8 +1241,16 @@ within base R (i.e. it is a default function in R and we do not need to load a p
 <p>Now we are ready to code up the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sleep_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phys_active</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">smoke_now</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alcohol_day_num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">regular_marij</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_group</span><span class="p">,</span>
-<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_40</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the glm model</span>
+<span class="n">sleep_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">hypertension_flagged</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sleep_hrs_night</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">gender</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">age</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">phys_active</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">smoke_now</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">alcohol_day_num</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">regular_marij</span>
+<span class="w">                   </span><span class="o">+</span><span class="w"> </span><span class="n">bmi_group</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_40</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binomial</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1205,7 +1258,8 @@ within base R (i.e. it is a default function in R and we do not need to load a p
 <p>Running the above code may seem somewhat anticlimactic, since there was no output. Let us quickly check out the model using the summary function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">sleep_model</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarise the glm model</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">sleep_model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1216,18 +1270,18 @@ glm(formula = hypertension_flagged ~ sleep_hrs_night + gender +
     bmi_group, family = binomial, data = sleep_40)
 
 Coefficients:
-                      Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)           9.639594   0.478165  20.160  &lt; 2e-16 ***
-sleep_hrs_night      -1.155705   0.048539 -23.810  &lt; 2e-16 ***
-genderMale            0.557133   0.103315   5.393 6.95e-08 ***
-age                  -0.037798   0.004429  -8.534  &lt; 2e-16 ***
-phys_activeYes       -0.066194   0.103405  -0.640   0.5221    
-smoke_nowYes         -0.252669   0.103775  -2.435   0.0149 *  
-alcohol_day_num       0.009559   0.021091   0.453   0.6504    
-regular_marijYes      0.039097   0.111424   0.351   0.7257    
-bmi_groupObese        0.233838   0.131469   1.779   0.0753 .  
-bmi_groupOverweight   0.059975   0.133019   0.451   0.6521    
-bmi_groupUnderweight -0.834817   0.610198  -1.368   0.1713    
+                     Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          8.804777   0.763722  11.529  &lt; 2e-16 ***
+sleep_hrs_night     -1.155705   0.048539 -23.810  &lt; 2e-16 ***
+genderMale           0.557133   0.103315   5.393 6.95e-08 ***
+age                 -0.037798   0.004429  -8.534  &lt; 2e-16 ***
+phys_activeYes      -0.066194   0.103405  -0.640   0.5221    
+smoke_nowYes        -0.252669   0.103775  -2.435   0.0149 *  
+alcohol_day_num      0.009559   0.021091   0.453   0.6504    
+regular_marijYes     0.039097   0.111424   0.351   0.7257    
+bmi_groupHealthy     0.834817   0.610198   1.368   0.1713    
+bmi_groupOverweight  0.894791   0.607952   1.472   0.1411    
+bmi_groupObese       1.068655   0.607476   1.759   0.0785 .  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -1249,12 +1303,16 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 <p>We can do this relatively easily using the <code class="docutils literal notranslate"><span class="pre">tbl_regression</span></code> function within the <code class="docutils literal notranslate"><span class="pre">gtsummary</span></code> package. The researchers are interested in the association between hypertension and sleep, the other factors are just being adjusted for, so we only include <code class="docutils literal notranslate"><span class="pre">sleep_hrs_night</span></code>. We also want the table to be readable and so we make sure that the variable names in the table are not their coded R names. We will also make sure our p-values have are rounded to 3 digits using the <code class="docutils literal notranslate"><span class="pre">pvalue_fun</span></code> argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the table</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the regression table</span>
 <span class="n">sleep_model_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_model</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">   </span><span class="nf">tbl_regression</span><span class="p">(</span><span class="n">exponentiate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1"># print the actual odds rather than log odds</span>
-<span class="w">                  </span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sleep_hrs_night&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># keep only sleep variable</span>
-<span class="w">                  </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># fix label</span>
-<span class="w">                  </span><span class="n">pvalue_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="nf">style_sigfig</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span><span class="w"> </span><span class="c1"># fix p-value rounding</span>
+<span class="w">  </span><span class="nf">tbl_regression</span><span class="p">(</span><span class="n">exponentiate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">                 </span><span class="c1"># print the actual odds rather than log odds</span>
+<span class="w">                 </span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sleep_hrs_night&quot;</span><span class="p">),</span>
+<span class="w">                 </span><span class="c1"># keep only sleep variable</span>
+<span class="w">                 </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">sleep_hrs_night</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s">&quot;Sleep (hrs/night)&quot;</span><span class="p">),</span>
+<span class="w">                 </span><span class="c1"># tidy labels</span>
+<span class="w">                 </span><span class="n">pvalue_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="nf">style_sigfig</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+<span class="w">                 </span><span class="c1"># fix p-value rounding</span>
 <span class="c1"># display the table</span>
 <span class="c1"># sleep_model_table</span>
 </pre></div>
@@ -1282,7 +1340,7 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 <p>To assess the linearity, we will plot the predicted values of the outcome against any continuous covariates in the model (only age and hours of sleep in our case). First we need to save the predicted values on the logit scale from the model to our data set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save predicted values to the data frame</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># save predicted values to the data frame</span>
 <span class="n">sleep_40</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">sleep_model</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">))</span>
 </pre></div>
@@ -1293,18 +1351,21 @@ corresponding inference metrics - confidence intervals (CI) and p-values.</p>
 shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot logit scale predictions against age</span>
-<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
-<span class="c1"># Plot logit scale predictions against number of hours of sleep</span>
-<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hours of Sleep Per Night&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot logit scale predictions against age</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Age&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
+
+<span class="c1"># plot logit scale predictions against number of hours of sleep</span>
+<span class="n">sleep_40</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sleep_hrs_night</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hours of Sleep Per Night&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predictions (logit-scale)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1313,10 +1374,8 @@ shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
 <a class="reference internal image-reference" href="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png"><img alt="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png" src="_images/6ddcbd57b874bcb8cb0d01d378685d2be0f62cc0b3b053d1e3b36e8412d31451.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
-<p>Both appear more or less linear so the linearity assumption is satisfied.</p>
-<p>Finally, on to independence. It is reasonable to assume our observations are independent as there are no repeated measurements (i.e. every participant only appears in the data set once) and there are no other clustering mechanisms
-(e.g. patients within hospitals, students within schools).</p>
-<p>So we’ve checked the assumptions behind our model are valid.</p>
+<p>Both appear more or less linear so the linearity assumption is satisfied Finally, on to independence. It is reasonable to assume our observations are independent as there are no repeated measurements (i.e. every participant only appears in the data set once) and there are no other clustering mechanisms
+(e.g. patients within hospitals, students within schools). So we’ve checked the assumptions behind our model are valid.</p>
 </section>
 </section>
 </section>
@@ -1381,6 +1440,7 @@ shows a roughly linear pattern, then the linearity assumption is satisfied.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rstudio-set-up">RStudio Set-up</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-load-packages">Install/Load Packages</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#path-setting">Path Setting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-environment">Clearing the Environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-your-data">Load in your Data</a></li>
 </ul>
 </li>
