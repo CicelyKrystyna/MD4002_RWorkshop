@@ -21,5 +21,5 @@ parts:
     - file: MD4002_RWorkshop.ipynb
   # - caption: 
   - caption: Post-Workshop Resources
-    #chapters:
-    #- file: MD4002_RWorkshop.ipynb
+    chapters:
+    - file: Resources.ipynb
