@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: intro.md
 parts:
   - caption: Introduction
     chapters:
@@ -11,13 +11,15 @@ parts:
     chapters:
     - file: installR.md
     - file: installRStudio.md
-  - caption: Getting Started
+  # - caption: Getting Started
+  - caption: Pre-Workshop Self-directed Study
     chapters:
     - file: RBasics.ipynb
-  - caption: Conducting a Data Project
+  # - caption: Conducting a Data Project
+  - caption: Peri-Workshop Materials
     chapters:
     - file: MD4002_RWorkshop.ipynb
-#  - caption: Quantitative Case Studies
-#    chapters:
-#   - file: ANOVA.ipynb
-#   - file: Power_Calculations.ipynb
+  # - caption: 
+  - caption: Post-Workshop Resources
+    #chapters:
+    #- file: MD4002_RWorkshop.ipynb
